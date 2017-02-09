@@ -1,0 +1,1 @@
+select * from tempdb.sys.database_files

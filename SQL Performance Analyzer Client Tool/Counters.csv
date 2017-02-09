@@ -1,0 +1,41 @@
+CounterName,DisplayName,CounterValue,InstanceName,ObjectName,Chart
+Batch Requests/sec,,,,,1
+% Processor Time,,CounterValue /(Select count(*) from dbo.cpus) as CounterValue,sqlservr,,1
+Processor Queue Length,,,,,1
+Current Disk Queue Length,,,_total,LogicalDisk,1
+Disk Transfers/sec,IOPS (Disk Transfers/sec),,_total,LogicalDisk,1
+Avg. Disk sec/Transfer,Latency ms (Avg. Disk sec/Transfer),countervalue * 1024,_total,LogicalDisk,1
+Disk Bytes/sec,Throughput MB (Disk Bytes/sec),countervalue/1024/1024,_total,LogicalDisk,1
+Memory Grants Outstanding,,,,,1
+Memory Grants Pending,,,,,1
+Output Queue Length,Network Queue (Output Queue Length),,,,1
+Blocked tasks,,,default,,0
+Number of Deadlocks/sec,,,_Total,,0
+Lock Waits/sec,,,_Total,,0
+Lock Timeouts/sec,,,_Total,,0
+Lock Wait Time (ms),,,_Total,,0
+Lock Requests/sec,,,_Total,,0
+Page Splits/sec,,,,,0
+Lock Waits/sec,,,_Total,,0
+Table Lock Escalations/sec,,,,,0
+Workfiles Created/sec,,,,,0
+Log Growths,,,,,0
+Buffer cache hit ratio,,,,,0
+Context Switches/sec,,,,,0
+Mixed page allocations/sec,,,,,0
+Page lookups/sec,,,,,0
+SQL Compilations/sec,,,,,0
+SQL Re-Compilations/sec,,,,,0
+Forwarded Records/sec,,,,,0
+Full Scans/sec,,,,,0
+Lazy writes/sec,,,,,0
+Log Flush Waits/sec,,,,,0
+Log Flushes/sec,,,,,0
+User Connections,,,,,0
+Logins/sec,,,,,0
+Logouts/sec,,,,,0
+Mars Deadlocks,,,,,0
+Temp Tables Creation Rate,,,,,0
+Transactions/sec,,,,,0
+Working Set,Working Set (MB),countervalue/1024/1024,sqlservr,,0
+Cache Hit Ratio,,,_Total,,0

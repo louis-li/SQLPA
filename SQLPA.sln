@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "SQLPAReports", "SQLPAReports\SQLPAReports.rptproj", "{29C10001-A9C6-4980-BEC1-43EAF43252B7}"
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "SQLPASummaryReports", "SQLPASummaryReports\SQLPASummaryReports.rptproj", "{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQL Performance Analyzer Client Tool", "SQL Performance Analyzer Client Tool\SQL Performance Analyzer Client Tool.csproj", "{A1FC418B-990F-45D9-82AF-BD034818851D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLDiagConfigurationManager", "SQLDiagConfigurationManager\SQLDiagConfigurationManager.csproj", "{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		DebugLocal|Any CPU = DebugLocal|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
+		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.CD_ROM|Any CPU.ActiveCfg = Release
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.CD_ROM|Any CPU.Build.0 = Release
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.CD_ROM|Any CPU.Deploy.0 = Release
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.Debug|Any CPU.ActiveCfg = Debug
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.Debug|Any CPU.Build.0 = Debug
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.Debug|Any CPU.Deploy.0 = Debug
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.DebugLocal|Any CPU.ActiveCfg = DebugLocal
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.DebugLocal|Any CPU.Build.0 = DebugLocal
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.DebugLocal|Any CPU.Deploy.0 = DebugLocal
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.DVD-5|Any CPU.ActiveCfg = DebugLocal
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.DVD-5|Any CPU.Build.0 = DebugLocal
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.DVD-5|Any CPU.Deploy.0 = DebugLocal
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.Release|Any CPU.ActiveCfg = Release
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.Release|Any CPU.Build.0 = Release
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.Release|Any CPU.Deploy.0 = Release
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.SingleImage|Any CPU.ActiveCfg = Release
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.SingleImage|Any CPU.Build.0 = Release
+		{29C10001-A9C6-4980-BEC1-43EAF43252B7}.SingleImage|Any CPU.Deploy.0 = Release
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.CD_ROM|Any CPU.ActiveCfg = Release
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.CD_ROM|Any CPU.Build.0 = Release
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.CD_ROM|Any CPU.Deploy.0 = Release
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.Debug|Any CPU.ActiveCfg = Debug
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.Debug|Any CPU.Build.0 = Debug
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.Debug|Any CPU.Deploy.0 = Debug
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.DebugLocal|Any CPU.ActiveCfg = DebugLocal
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.DebugLocal|Any CPU.Build.0 = DebugLocal
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.DebugLocal|Any CPU.Deploy.0 = DebugLocal
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.DVD-5|Any CPU.ActiveCfg = DebugLocal
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.DVD-5|Any CPU.Build.0 = DebugLocal
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.DVD-5|Any CPU.Deploy.0 = DebugLocal
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.Release|Any CPU.ActiveCfg = Release
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.Release|Any CPU.Build.0 = Release
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.Release|Any CPU.Deploy.0 = Release
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.SingleImage|Any CPU.ActiveCfg = Release
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.SingleImage|Any CPU.Build.0 = Release
+		{0E2605FF-097E-4AF7-B819-24DE2F67EB4B}.SingleImage|Any CPU.Deploy.0 = Release
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{A1FC418B-990F-45D9-82AF-BD034818851D}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

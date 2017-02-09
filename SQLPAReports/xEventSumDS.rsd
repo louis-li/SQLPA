@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description />
+  <DataSet Name="xEventSumDS">
+    <Query>
+      <DataSourceReference>SQLPTO</DataSourceReference>
+      <CommandText>With cte as (
+select object_name,count(*) as occurrence from xEvents
+group by object_name)
+Select object_name,occurrence, 
+	is_analyzed = case when t.name is null then 0 else 1 end
+from cte left join sys.tables t
+	on cte.object_name = t.name and t.schema_id = schema_id('xe')</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="object_name">
+        <DataField>object_name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="occurrence">
+        <DataField>occurrence</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="is_analyzed">
+        <DataField>is_analyzed</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

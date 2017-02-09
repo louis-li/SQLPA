@@ -1,0 +1,856 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0517319D-3DB8-4F7B-9CFE-01C9617A25B6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SQLDiagConfigurationManager</RootNamespace>
+    <AssemblyName>SQLDiagConfigurationManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SqlPAConfigManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SqlPAConfigManager.Designer.cs">
+      <DependentUpon>SqlPAConfigManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="SqlPAConfigManager.resx">
+      <DependentUpon>SqlPAConfigManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Source\2008R2SQL2008R2\Exec_SQLDiag - 2008R2.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\Begin\Execute-SqlScript.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\BIOS.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\BPoolMemory.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\CachedPlans.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\DiskBlockSize.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\DiskFragmentation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\DiskPartition.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\DiskPartitionToDrive.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\DiskVolumes.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\Execute-SqlScript.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\FileGrowth.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\MemoryClerks.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\MemoryClockHand.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\OSInfo.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\PowerPlan.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlConfigurationServices.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SQLServer.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\UpTime.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\PTO_DataCollectionBegin.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\PTO_DataCollectionBegin.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\PTO_DataCollectionEnd.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\PTO_DataCollectionEnd.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\PTO_Snapshot.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\PTO_Snapshot.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\Snapshot\Execute-SqlScript.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\XEventSQLDiag.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\ZipFiles.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\Exec_SQLDiag - 2012.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\Begin\Execute-SqlScript.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\BIOS.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\BPoolMemory.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\CachedPlans.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\DiskBlockSize.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\DiskFragmentation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\DiskPartition.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\DiskPartitionToDrive.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\DiskVolumes.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\Execute-SqlScript.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\FileGrowth.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\MemoryClerks.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\MemoryClockHand.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\OSInfo.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\PowerPlan.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlConfigurationServices.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SQLServer.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\UpTime.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\2008R2SQL2012\SqlDiagWorkFolder\Snapshot\Execute-SqlScript.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\Exec_SQLDiag - 2012 - Schedule.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\Exec_SQLDiag - 2012.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\Exec_SQLDiag - 2014 - Schedule.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\Exec_SQLDiag - 2014.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\Exec_SQLDiag - 2016 - Schedule.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\Exec_SQLDiag - 2016.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\Begin\Execute-SqlScript.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\BIOS.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\BPoolMemory.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\CachedPlans.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\DiskBlockSize.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\DiskFragmentation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\DiskPartition.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\DiskPartitionToDrive.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\DiskVolumes.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\Execute-SqlScript.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\FileGrowth.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\MemoryClerks.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\MemoryClockHand.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\OSInfo.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\PowerPlan.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\SqlConfigurationServices.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\SQLServer.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\End\UpTime.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\PTO_DataCollectionBegin.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\PTO_DataCollectionBegin.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\PTO_DataCollectionEnd.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\PTO_DataCollectionEnd.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\PTO_Snapshot.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\PTO_Snapshot.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\Snapshot\Execute-SqlScript.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\XEventSQLDiag.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\XEventSQLDiag.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\SqlDiagWorkFolder\ZipFiles.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\Begin\SqlScripts\GetCurrentActivity.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\Begin\SqlScripts\Spinlocks_Begin.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\AvailableRAM.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\Blocking.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\BpeConfig.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\CpuUtil.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\CSI.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\DatabaseFiles.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\DmOsMemNodes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\DmOsNodes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\DmOsScheduler.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\DmOsSysInfo.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\DmOsSysMem.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\FKWithNoIndex.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\GUIDInClusteredIndex.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\HealthSession.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\HeapTable.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\HypotheticalObjects.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\IFI.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\Indexes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\IndexFragmentation.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\IOPendingRequest.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\IOStall.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\Latch.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\LinkedServers.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\LPIM.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\MoreIndexesThanColumns.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\NonAlignedIndexes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\Oom.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\PlanCacheStats.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\PlanCacheUse.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\ProcessMemory.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\RG_Configuration.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\RG_ResourcePool.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\RG_WorkGroup.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\Spinlocks_After.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\StatisticsSampleRate.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\Stats.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\SystemRequests.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\TempDBFileSize.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\TraceFlag.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\Traces.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\UnusedIndexes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\UserObjectInMaster.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\VLFs.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\WaitStats.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\XeSessions.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\XtpIndex.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\XtpMemoryAlloc.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\End\SqlScripts\XtpNCI.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\Snapshot\SqlScripts\Blocking.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\SQLDiagPTO2008R2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2008R2\SqlDiagWorkFolder\XEventSQLDiag.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\Begin\SqlScripts\GetCurrentActivity.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\Begin\SqlScripts\Spinlocks_Begin.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\AvailableRAM.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\Blocking.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\BpeConfig.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\CpuUtil.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\CSI.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\DatabaseFiles.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\DmOsMemNodes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\DmOsNodes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\DmOsScheduler.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\DmOsSysInfo.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\DmOsSysMem.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\FKWithNoIndex.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\GUIDInClusteredIndex.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\HadrDatabaseReplicaClusterStates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\HadrDatabaseReplicaStates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\HadrDmGroupStates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\HadrDmReplicaStates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\HadrMembers.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\HadrNetwork.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\HadrReplicas.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\HealthSession.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\HeapTable.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\HypotheticalObjects.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\IFI.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\Indexes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\IndexFragmentation.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\IOPendingRequest.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\IOStall.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\Latch.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\LinkedServers.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\LPIM.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\MoreIndexesThanColumns.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\NonAlignedIndexes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\Oom.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\PlanCacheStats.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\PlanCacheUse.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\ProcessMemory.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\RG_Configuration.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\RG_ResourcePool.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\RG_WorkGroup.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\Spinlocks_After.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\StatisticsSampleRate.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\Stats.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\SystemRequests.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\TempDBFileSize.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\TraceFlag.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\Traces.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\UnusedIndexes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\UserObjectInMaster.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\VLFs.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\WaitStats.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\XeSessions.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\XtpIndex.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\XtpMemoryAlloc.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\End\SqlScripts\XtpNCI.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\2008R2SQL2012\SqlDiagWorkFolder\Snapshot\SqlScripts\Blocking.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\Begin\SqlScripts\GetCurrentActivity.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\Begin\SqlScripts\Spinlocks_Begin.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\AvailableRAM.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\Blocking.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\BpeConfig.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\CpuUtil.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\CSI.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\DatabaseFiles.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\DmOsMemNodes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\DmOsNodes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\DmOsScheduler.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\DmOsSysInfo.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\DmOsSysMem.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\FKWithNoIndex.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\GUIDInClusteredIndex.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\HadrDatabaseReplicaClusterStates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\HadrDatabaseReplicaStates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\HadrDmGroupStates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\HadrDmReplicaStates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\HadrMembers.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\HadrNetwork.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\HadrReplicas.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\HealthSession.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\HeapTable.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\HypotheticalObjects.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\IFI.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\Indexes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\IndexFragmentation.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\IOPendingRequest.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\IOStall.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\Latch.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\LinkedServers.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\LPIM.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\MoreIndexesThanColumns.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\NonAlignedIndexes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\Oom.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\PlanCacheStats.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\PlanCacheUse.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\ProcessMemory.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\RG_Configuration.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\RG_ResourcePool.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\RG_WorkGroup.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\Spinlocks_After.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\StatisticsSampleRate.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\Stats.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\SystemRequests.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\TempDBFileSize.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\TraceFlag.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\Traces.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\UnusedIndexes.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\UserObjectInMaster.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\VLFs.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\WaitStats.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\XeSessions.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\XtpIndex.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\XtpMemoryAlloc.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\End\SqlScripts\XtpNCI.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SqlDiagWorkFolder\Snapshot\SqlScripts\Blocking.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SQLDiagPTO2012.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SQLDiagPTO2014.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\SQLDiagPTO2016.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

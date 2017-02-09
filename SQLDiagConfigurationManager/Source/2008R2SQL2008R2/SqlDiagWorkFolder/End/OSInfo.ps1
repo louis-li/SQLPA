@@ -1,0 +1,1 @@
+Get-WmiObject -class Win32_OperatingSystem | Select-Object Caption, Version, ServicePackMajorVersion, OSArchitecture, CSName, WindowsDirectory

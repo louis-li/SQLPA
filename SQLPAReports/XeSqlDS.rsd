@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description />
+  <DataSet Name="XeSqlDS">
+    <Query>
+      <DataSourceReference>SQLPTO</DataSourceReference>
+      <CommandText>
+Select Top 10 eq.*
+	,Case when Exists (select * from xe.sort_warning sw where sw.query_hash = eq.query_hash ) THEN 1 ELSE 0 END as sort_warning
+	,Case when Exists (select * from xe.optimizer_timeout ot where ot.query_hash = eq.query_hash ) THEN 1 ELSE 0 END as optimizer_timeout
+	,Case when Exists (select * from xe.plan_affecting_convert pac where pac.query_hash = eq.query_hash ) THEN 1 ELSE 0 END as plan_affecting_convert
+From 
+	xe.expensive_query eq
+Order by 
+	row_number</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="cpu_time">
+        <DataField>cpu_time</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="sql_text">
+        <DataField>sql_text</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="query_hash">
+        <DataField>query_hash</DataField>
+        <rd:TypeName>System.Byte[]</rd:TypeName>
+      </Field>
+      <Field Name="row_number">
+        <DataField>row_number</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="sort_warning">
+        <DataField>sort_warning</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="optimizer_timeout">
+        <DataField>optimizer_timeout</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="plan_affecting_convert">
+        <DataField>plan_affecting_convert</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
