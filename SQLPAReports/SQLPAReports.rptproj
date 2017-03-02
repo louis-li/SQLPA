@@ -198,8 +198,12 @@
       <FullPath>xEvents_Queries.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>xEvents_QueryEventList.rdl</Name>
-      <FullPath>xEvents_QueryEventList.rdl</FullPath>
+      <Name>xEvents_QueryEventList_NotNeed.rdl</Name>
+      <FullPath>xEvents_QueryEventList_NotNeed.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>xEvents_QueryEventListByActivityID.rdl</Name>
+      <FullPath>xEvents_QueryEventListByActivityID.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>xEvents_RowCount.rdl</Name>
@@ -208,10 +212,6 @@
     <ProjectItem>
       <Name>xEvents_Writes.rdl</Name>
       <FullPath>xEvents_Writes.rdl</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>xEvents_QueryEventListByActivityID.rdl</Name>
-      <FullPath>xEvents_QueryEventListByActivityID.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>

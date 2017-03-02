@@ -13,16 +13,26 @@
     <DataSet Name="XeSqlDS">
       <Query>
         <DataSourceName>SQLPTO</DataSourceName>
-        <CommandText>Select eq.*
-     ,eqc.rate
+        <CommandText>
+with cte as(
+Select distinct query_id, attach_id+'[1]' as attach_id,  ROW_NUMBER() over (partition by attach_id order by count(event) desc ) as row_number  
+from xel.expensive_query_detailed_events
+Where query_id &lt;=10
+group by query_id,attach_id)
+Select eq.*
+	,eqc.rate
 	,Case when Exists (select * from xel.sort_warning sw where sw.a_query_hash = eq.query_hash ) THEN 1 ELSE 0 END as sort_warning
 	,Case when Exists (select * from xel.optimizer_timeout ot where ot.a_query_hash = eq.query_hash ) THEN 1 ELSE 0 END as optimizer_timeout
 	,Case when Exists (select * from xel.plan_affecting_convert pac where pac.a_query_hash = eq.query_hash ) THEN 1 ELSE 0 END as plan_affecting_convert
+	,c.attach_id
 From 
 	xel.expensive_query eq
-	inner join xel.expensive_query_combined eqc on eq.query_id = eqc.query_id and eqc.category = 'physical_reads'
+	inner join xel.expensive_query_combined eqc 
+		on eq.query_id = eqc.query_id and eqc.category = 'physical_reads'
+	Inner Join cte c on c.query_id = eq.query_id and row_number = 1
 Order by 
-	rate</CommandText>
+	rate
+</CommandText>
       </Query>
       <Fields>
         <Field Name="cpu_time">
@@ -92,6 +102,10 @@ Order by
           <DataField>rate</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
+        <Field Name="attach_id">
+          <DataField>attach_id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="AllQueriesDS">
@@ -152,7 +166,7 @@ order by rate</CommandText>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.34896in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -223,7 +237,7 @@ order by rate</CommandText>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>1.16042in</Height>
+                  <Height>1.25938in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -407,10 +421,10 @@ order by rate</CommandText>
                                     <Actions>
                                       <Action>
                                         <Drillthrough>
-                                          <ReportName>xEvents_QueryEventList</ReportName>
+                                          <ReportName>xEvents_QueryEventListByActivityID</ReportName>
                                           <Parameters>
-                                            <Parameter Name="RN">
-                                              <Value>=Fields!query_id.Value</Value>
+                                            <Parameter Name="ActivityID">
+                                              <Value>=Fields!attach_id.Value</Value>
                                             </Parameter>
                                           </Parameters>
                                         </Drillthrough>
@@ -508,7 +522,7 @@ order by rate</CommandText>
             </TablixRowHierarchy>
             <DataSetName>XeSqlDS</DataSetName>
             <Top>7.62221in</Top>
-            <Height>1.41042in</Height>
+            <Height>1.60834in</Height>
             <Width>9.89584in</Width>
             <Style>
               <Border>
@@ -1665,7 +1679,7 @@ order by rate</CommandText>
             </Style>
           </Subreport>
         </ReportItems>
-        <Height>9.03263in</Height>
+        <Height>9.23055in</Height>
         <Style />
       </Body>
       <Width>9.89584in</Width>

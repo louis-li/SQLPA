@@ -144,8 +144,8 @@ namespace SQL_PTO_Report
                 //Show Splash screen
                 panel1.Left = (this.Size.Width - panel1.Size.Width) / 2;
                 panel1.Top = (this.Size.Height - panel1.Size.Height) / 2;
-                panel1.Visible = true;
-                timer2.Enabled = true;
+                //panel1.Visible = true;
+                //timer2.Enabled = true;
 
                 BindDbNames();
 
