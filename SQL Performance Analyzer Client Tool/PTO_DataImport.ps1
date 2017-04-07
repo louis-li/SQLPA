@@ -22,7 +22,7 @@ $AutoStatsByDbScript = {
 	into xel.auto_stats_by_db
 	from xel.auto_stats a
 		Inner Join dbo.Databases d on a.c_database_id = d.id
-		Left JOin dbo.Indexes i on a.c_object_id = i.objectID
+		Left JOin dbo.Indexes i on a.c_object_id = i.objectID  and i.DatabaseName = d.Name
 	group by d.Name,c_object_id,i.schemaName,i.objectName,i.indexName
 	order by d.Name, duration,i.schemaName,i.objectName,i.indexName desc
 	GO"

@@ -17,7 +17,6 @@
 with cte as(
 Select distinct query_id, attach_id+'[1]' as attach_id,  ROW_NUMBER() over (partition by attach_id order by count(event) desc ) as row_number  
 from xel.expensive_query_detailed_events
-Where query_id &lt;=10
 group by query_id,attach_id)
 Select eq.*
 	,eqc.rate
