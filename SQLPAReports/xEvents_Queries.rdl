@@ -21,28 +21,64 @@ order by query_id</CommandText>
           <DataField>query_id</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
-        <Field Name="cpu_time">
-          <DataField>cpu_time</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="sql_text">
           <DataField>sql_text</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cpu_time_s">
+          <DataField>cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="duration_time_s">
+          <DataField>duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="executions">
           <DataField>executions</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Name">
-          <DataField>name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="physical_reads">
+          <DataField>physical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="logical_reads">
+          <DataField>logical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
         <Field Name="percentage">
           <DataField>percentage</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="avg_cpu_time">
-          <DataField>avg_cpu_time</DataField>
+        <Field Name="row_count">
+          <DataField>row_count</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="writes">
+          <DataField>writes</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="avg_cpu_time_s">
+          <DataField>avg_cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_duration_time_s">
+          <DataField>avg_duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_physical_reads">
+          <DataField>avg_physical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_logical_reads">
+          <DataField>avg_logical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_row_count">
+          <DataField>avg_row_count</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_writes">
+          <DataField>avg_writes</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
@@ -66,24 +102,60 @@ order by rate</CommandText>
           <DataField>sql_text</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="duration">
-          <DataField>duration</DataField>
+        <Field Name="cpu_time_s">
+          <DataField>cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="duration_time_s">
+          <DataField>duration_time_s</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="executions">
           <DataField>executions</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="name">
-          <DataField>name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="physical_reads">
+          <DataField>physical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="logical_reads">
+          <DataField>logical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
         <Field Name="percentage">
           <DataField>percentage</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="avg_duration">
-          <DataField>avg_duration</DataField>
+        <Field Name="row_count">
+          <DataField>row_count</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="writes">
+          <DataField>writes</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="avg_cpu_time_s">
+          <DataField>avg_cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_duration_time_s">
+          <DataField>avg_duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_physical_reads">
+          <DataField>avg_physical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_logical_reads">
+          <DataField>avg_logical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_row_count">
+          <DataField>avg_row_count</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_writes">
+          <DataField>avg_writes</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
@@ -107,25 +179,61 @@ order by rate</CommandText>
           <DataField>sql_text</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="cpu_time_s">
+          <DataField>cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="physical_reads">
           <DataField>physical_reads</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="duration_time_s">
+          <DataField>duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="executions">
           <DataField>executions</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="name">
-          <DataField>name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="logical_reads">
+          <DataField>logical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
         <Field Name="percentage">
           <DataField>percentage</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="row_count">
+          <DataField>row_count</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
         <Field Name="avg_physical_reads">
           <DataField>avg_physical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="writes">
+          <DataField>writes</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="avg_cpu_time_s">
+          <DataField>avg_cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_duration_time_s">
+          <DataField>avg_duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_logical_reads">
+          <DataField>avg_logical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_row_count">
+          <DataField>avg_row_count</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_writes">
+          <DataField>avg_writes</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -148,25 +256,61 @@ order by rate</CommandText>
           <DataField>sql_text</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="cpu_time_s">
+          <DataField>cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="logical_reads">
           <DataField>logical_reads</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="duration_time_s">
+          <DataField>duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="executions">
           <DataField>executions</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="name">
-          <DataField>name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="physical_reads">
+          <DataField>physical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
         <Field Name="percentage">
           <DataField>percentage</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="row_count">
+          <DataField>row_count</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
         <Field Name="avg_logical_reads">
           <DataField>avg_logical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="writes">
+          <DataField>writes</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="avg_cpu_time_s">
+          <DataField>avg_cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_duration_time_s">
+          <DataField>avg_duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_physical_reads">
+          <DataField>avg_physical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_row_count">
+          <DataField>avg_row_count</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_writes">
+          <DataField>avg_writes</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -189,17 +333,29 @@ order by rate</CommandText>
           <DataField>sql_text</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="cpu_time_s">
+          <DataField>cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="row_count">
           <DataField>row_count</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="duration_time_s">
+          <DataField>duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="executions">
           <DataField>executions</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="name">
-          <DataField>name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="physical_reads">
+          <DataField>physical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="logical_reads">
+          <DataField>logical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
         <Field Name="percentage">
           <DataField>percentage</DataField>
@@ -207,7 +363,31 @@ order by rate</CommandText>
         </Field>
         <Field Name="avg_row_count">
           <DataField>avg_row_count</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="writes">
+          <DataField>writes</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="avg_cpu_time_s">
+          <DataField>avg_cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_duration_time_s">
+          <DataField>avg_duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_physical_reads">
+          <DataField>avg_physical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_logical_reads">
+          <DataField>avg_logical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_writes">
+          <DataField>avg_writes</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -234,21 +414,57 @@ order by rate</CommandText>
           <DataField>writes</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
+        <Field Name="cpu_time_s">
+          <DataField>cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="duration_time_s">
+          <DataField>duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="executions">
           <DataField>executions</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="name">
-          <DataField>name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="physical_reads">
+          <DataField>physical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="logical_reads">
+          <DataField>logical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
         <Field Name="percentage">
           <DataField>percentage</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="row_count">
+          <DataField>row_count</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
         <Field Name="avg_writes">
           <DataField>avg_writes</DataField>
-          <rd:TypeName>System.Int64</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_cpu_time_s">
+          <DataField>avg_cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_duration_time_s">
+          <DataField>avg_duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_physical_reads">
+          <DataField>avg_physical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_logical_reads">
+          <DataField>avg_logical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_row_count">
+          <DataField>avg_row_count</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -261,24 +477,24 @@ order by rate</CommandText>
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Group Name="Chart3_CategoryGroup">
+                  <Group Name="chartCPU_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!Name.Value</GroupExpression>
+                      <GroupExpression>=Fields!query_id.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!Name.Value</Value>
+                      <Value>=Fields!query_id.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!Name.Value</Label>
+                  <Label>=Fields!query_id.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>cpu time</Label>
+                  <Label>cpu time s</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
@@ -288,7 +504,7 @@ order by rate</CommandText>
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!cpu_time.Value)</Y>
+                        <Y>=Sum(Fields!cpu_time_s.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -619,7 +835,7 @@ order by rate</CommandText>
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.47334in</Width>
+                  <Width>0.67708in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
@@ -715,7 +931,7 @@ order by rate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>CPU Time (ms)</Value>
+                                  <Value>CPU Time (s)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -783,7 +999,7 @@ order by rate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Avg CPU (ms)</Value>
+                                  <Value>Avg CPU (s)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -815,21 +1031,21 @@ order by rate</CommandText>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Name">
+                        <Textbox Name="query_id">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Name.Value</Value>
+                                  <Value>=Fields!query_id.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Name</rd:DefaultName>
+                          <rd:DefaultName>query_id</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -877,14 +1093,14 @@ order by rate</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="cpu_time1">
+                        <Textbox Name="cpu_time_s">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!cpu_time.Value / 1000</Value>
+                                  <Value>=Fields!cpu_time_s.Value</Value>
                                   <Style>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>
@@ -893,7 +1109,7 @@ order by rate</CommandText>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>cpu_time1</rd:DefaultName>
+                          <rd:DefaultName>cpu_time_s</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -939,14 +1155,14 @@ order by rate</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="avg_cpu_time">
+                        <Textbox Name="cpu_time_s1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!avg_cpu_time.Value / 1000</Value>
+                                  <Value>=Fields!cpu_time_s.Value</Value>
                                   <Style>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>
@@ -955,7 +1171,7 @@ order by rate</CommandText>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>avg_cpu_time</rd:DefaultName>
+                          <rd:DefaultName>cpu_time_s1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -996,7 +1212,7 @@ order by rate</CommandText>
             <Top>2.75179in</Top>
             <Left>4.16667in</Left>
             <Height>0.5in</Height>
-            <Width>4.82751in</Width>
+            <Width>5.03125in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1089,28 +1305,28 @@ order by rate</CommandText>
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Chart Name="Chart4">
+          <Chart Name="chartDuration">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Group Name="Chart4_CategoryGroup">
+                  <Group Name="chartDuration_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!name.Value</GroupExpression>
+                      <GroupExpression>=Fields!query_id.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!name.Value</Value>
+                      <Value>=Fields!query_id.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!name.Value</Label>
+                  <Label>=Fields!query_id.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>duration</Label>
+                  <Label>duration time s</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
@@ -1120,7 +1336,7 @@ order by rate</CommandText>
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!duration.Value)</Y>
+                        <Y>=Sum(Fields!duration_time_s.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -1455,7 +1671,7 @@ order by rate</CommandText>
                   <Width>0.41084in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.47334in</Width>
+                  <Width>0.57751in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.85417in</Width>
@@ -1585,7 +1801,7 @@ order by rate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Duration (ms)</Value>
+                                  <Value>Duration (s)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -1653,7 +1869,7 @@ order by rate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Avg duration(ms)</Value>
+                                  <Value>Avg duration(s)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -1722,7 +1938,7 @@ order by rate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!name.Value</Value>
+                                  <Value>=Fields!query_id.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1777,14 +1993,14 @@ order by rate</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="duration">
+                        <Textbox Name="duration_time_s">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!duration.Value /1000</Value>
+                                  <Value>=Fields!duration_time_s.Value</Value>
                                   <Style>
                                     <Format>0;(0)</Format>
                                   </Style>
@@ -1793,7 +2009,7 @@ order by rate</CommandText>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>duration</rd:DefaultName>
+                          <rd:DefaultName>duration_time_s</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1839,14 +2055,14 @@ order by rate</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="avg_duration">
+                        <Textbox Name="avg_duration_time_s">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!avg_duration.Value/1000</Value>
+                                  <Value>=Fields!avg_duration_time_s.Value</Value>
                                   <Style>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>
@@ -1855,7 +2071,7 @@ order by rate</CommandText>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>avg_duration</rd:DefaultName>
+                          <rd:DefaultName>avg_duration_time_s</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1895,9 +2111,9 @@ order by rate</CommandText>
             </TablixRowHierarchy>
             <DataSetName>DurationQueriesDS</DataSetName>
             <Top>6.28263in</Top>
-            <Left>4.16667in</Left>
+            <Left>4.0625in</Left>
             <Height>0.5in</Height>
-            <Width>5.03125in</Width>
+            <Width>5.13542in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -1989,21 +2205,21 @@ order by rate</CommandText>
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Chart Name="Chart5">
+          <Chart Name="chartPhysicalIO">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
                   <Group Name="Chart5_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!name.Value</GroupExpression>
+                      <GroupExpression>=Fields!query_id.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!name.Value</Value>
+                      <Value>=Fields!query_id.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!name.Value</Label>
+                  <Label>=Fields!query_id.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -2335,7 +2551,7 @@ order by rate</CommandText>
               </Style>
             </ChartNoDataMessage>
             <DataSetName>PhysicalReadsQueriesDS</DataSetName>
-            <Top>9.85638in</Top>
+            <Top>9.8425in</Top>
             <Height>2.75in</Height>
             <Width>4.02083in</Width>
             <ZIndex>9</ZIndex>
@@ -2622,7 +2838,7 @@ order by rate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!name.Value</Value>
+                                  <Value>=Fields!query_id.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2845,21 +3061,21 @@ order by rate</CommandText>
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Chart Name="Chart3">
+          <Chart Name="chartLogicalIO">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
                   <Group Name="Chart3_CategoryGroup1">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!name.Value</GroupExpression>
+                      <GroupExpression>=Fields!query_id.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!name.Value</Value>
+                      <Value>=Fields!query_id.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!name.Value</Label>
+                  <Label>=Fields!query_id.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -2872,7 +3088,7 @@ order by rate</CommandText>
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="cpu_time">
+                <ChartSeries Name="logical_reads">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
@@ -3478,7 +3694,7 @@ order by rate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!name.Value</Value>
+                                  <Value>=Fields!query_id.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3659,21 +3875,21 @@ order by rate</CommandText>
               </Border>
             </Style>
           </Tablix>
-          <Chart Name="Chart6">
+          <Chart Name="chartRowCount">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
                   <Group Name="Chart6_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!name.Value</GroupExpression>
+                      <GroupExpression>=Fields!query_id.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!name.Value</Value>
+                      <Value>=Fields!query_id.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!name.Value</Label>
+                  <Label>=Fields!query_id.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -3686,7 +3902,7 @@ order by rate</CommandText>
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="cpu_time">
+                <ChartSeries Name="row_count">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
@@ -4292,7 +4508,7 @@ order by rate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!name.Value</Value>
+                                  <Value>=Fields!query_id.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -4563,15 +4779,15 @@ order by rate</CommandText>
                 <ChartMember>
                   <Group Name="Chart7_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!name.Value</GroupExpression>
+                      <GroupExpression>=Fields!query_id.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!name.Value</Value>
+                      <Value>=Fields!query_id.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!name.Value</Label>
+                  <Label>=Fields!query_id.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -4584,7 +4800,7 @@ order by rate</CommandText>
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="cpu_time">
+                <ChartSeries Name="writes">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
@@ -5190,7 +5406,7 @@ order by rate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!name.Value</Value>
+                                  <Value>=Fields!query_id.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>

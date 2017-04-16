@@ -38,6 +38,7 @@
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
+            this.btnExport = new System.Windows.Forms.ToolStripSplitButton();
             this.tssbLoadData = new System.Windows.Forms.ToolStripSplitButton();
             this.miCollectedData = new System.Windows.Forms.ToolStripMenuItem();
             this.importReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,9 +48,9 @@
             this.fixScriptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allQueryPlansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dMVPlansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.timerProcessData = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAboutOK = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -74,7 +75,7 @@
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Remote;
             this.reportViewer1.ServerReport.ReportPath = "/SQLPTOReports/Dashboard";
-            this.reportViewer1.Size = new System.Drawing.Size(1158, 868);
+            this.reportViewer1.Size = new System.Drawing.Size(1144, 868);
             this.reportViewer1.TabIndex = 0;
             // 
             // statusStrip1
@@ -84,11 +85,13 @@
             this.sbDbNames,
             this.toolStripSplitButton1,
             this.toolStripSplitButton2,
+            this.btnExport,
             this.tssbLoadData,
+            this.toolStripProgressBar1,
             this.tsslStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 868);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1158, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1144, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -109,7 +112,7 @@
             this.sbDbNames.Image = ((System.Drawing.Image)(resources.GetObject("sbDbNames.Image")));
             this.sbDbNames.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sbDbNames.Name = "sbDbNames";
-            this.sbDbNames.Size = new System.Drawing.Size(83, 20);
+            this.sbDbNames.Size = new System.Drawing.Size(82, 20);
             this.sbDbNames.Text = "SQLPTO";
             this.sbDbNames.ButtonClick += new System.EventHandler(this.sbDbNames_ButtonClick);
             // 
@@ -147,6 +150,16 @@
             this.toolStripSplitButton2.Size = new System.Drawing.Size(81, 20);
             this.toolStripSplitButton2.Text = "PerfQuery";
             this.toolStripSplitButton2.ButtonClick += new System.EventHandler(this.toolStripSplitButton2_ButtonClick);
+            // 
+            // btnExport
+            // 
+            this.btnExport.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
+            this.btnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(72, 20);
+            this.btnExport.Text = "Export";
+            this.btnExport.ButtonClick += new System.EventHandler(this.btnExport_ButtonClick);
             // 
             // tssbLoadData
             // 
@@ -222,6 +235,11 @@
             this.dMVPlansToolStripMenuItem.Text = "DMV Plans";
             this.dMVPlansToolStripMenuItem.Click += new System.EventHandler(this.dMVPlansToolStripMenuItem_Click);
             // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            // 
             // tsslStatus
             // 
             this.tsslStatus.Name = "tsslStatus";
@@ -229,15 +247,10 @@
             this.tsslStatus.Text = "Idle";
             this.tsslStatus.Click += new System.EventHandler(this.tsslStatus_Click);
             // 
-            // timer1
+            // timerProcessData
             // 
-            this.timer1.Interval = 5000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Interval = 5000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            this.timerProcessData.Interval = 5000;
+            this.timerProcessData.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // panel1
             // 
@@ -363,13 +376,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1158, 890);
+            this.ClientSize = new System.Drawing.Size(1144, 890);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Reports";
             this.Text = "SQL Server Performance Analyzer Client Tool";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Reports_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -391,9 +405,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSplitButton tssbLoadData;
         private System.Windows.Forms.ToolStripMenuItem miCollectedData;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timerProcessData;
         private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
-        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton3;
         private System.Windows.Forms.ToolStripMenuItem importReportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFolderToolStripMenuItem;
@@ -414,6 +427,8 @@
         private System.Windows.Forms.Button btnAboutOK;
         private System.Windows.Forms.ToolStripMenuItem clearDataImportLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
+        private System.Windows.Forms.ToolStripSplitButton btnExport;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
     }
 }
 

@@ -6391,7 +6391,7 @@ select top 10 * from dbo.untrustedconstraints</CommandText>
             <ReportName>_header</ReportName>
             <Left>0.02083in</Left>
             <Height>1.42583in</Height>
-            <Width>9.5125in</Width>
+            <Width>9.95in</Width>
             <ZIndex>28</ZIndex>
             <Style>
               <Border>

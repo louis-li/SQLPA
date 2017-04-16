@@ -494,13 +494,11 @@ function Write-Log($LogMsg)
 			, c_row_count as [Row Count]
 			, a_attach_activity_id
 		from xel.sql_batch_completed
-		where c_cpu_time > 0
 		union all
 		select e_Time_Of_Event_local, c_statement,c_cpu_time
 			,c_duration,c_physical_reads,c_logical_reads, c_writes, c_row_count
 			,a_attach_activity_id
 		from xel.rpc_completed
-		where c_cpu_time > 0
 	)
 	select min(e.e_Time_Of_Event_local) as [Start Time],c.[Completed Time], c.[Sql Text],c.[CPU Time], c.[Duration],c.[Physical Reads],c.[Logical Reads], c.[Writes], c.[Row Count], c.a_attach_activity_id
 	Into xel.QueryHist
@@ -1685,7 +1683,7 @@ $sql = ";with cte as (
 	GO
 	   
 
-	select q.query_id,cte.ActivityID,max(cte.duration) as total_duration,count(*) as number_of_events
+	select q.query_id,cte.ActivityID,max(cte.duration) as total_duration,count(distinct q.attach_activity_id) as number_of_events
 	into xel.expensive_query_activities
 	from xel.allActivities cte inner join xel.expensive_query_attach_activity_id q 
 	on cte.ActivityID = left(q.attach_activity_id,36)
@@ -1693,105 +1691,203 @@ $sql = ";with cte as (
 	GO
 		
 	;With cte as (
-	Select cpu_time,executions,query_id,sql_text,cast(query_id as varchar(6)) as Name
-	From 
-		xel.expensive_query eq
-	Where query_id <= 10
-	union all
-	Select sum(cpu_time),sum(executions),999999,'All other queries','Others'
-	From 
-		xel.expensive_query eq
-	Where
-		query_id > 10
-	)
-	Select query_id, sql_text,cpu_time,executions,name, cpu_time/(Select sum(cpu_time) from cte) as percentage, cpu_time/executions as avg_cpu_time
+		Select cpu_time,duration, physical_reads, logical_reads, row_count
+			, writes, executions,query_id,sql_text,cast(query_id as varchar(6)) as Name
+		From 
+			xel.expensive_query eq
+		Where query_id <= 10
+		union all
+		Select sum(cpu_time),sum(duration), sum(physical_reads), sum(logical_reads), sum(row_count)
+			, sum(writes),sum(executions),999999,'All other queries','Others'
+		From 
+			xel.expensive_query eq
+		Where
+			query_id > 10
+		)
+	Select query_id, sql_text
+		, cpu_time * 1.0/1000000 as cpu_time_s
+		, duration * 1.0/1000000 as duration_time_s
+		, physical_reads
+		, logical_reads
+		, row_count
+		, writes
+		, executions
+		, cpu_time/(Select sum(cpu_time) from cte) as percentage
+		, cpu_time*1.0/executions/1000000 as avg_cpu_time_s
+		, duration*1.0/executions/1000000 as avg_duration_time_s
+		, physical_reads*1.0/executions as avg_physical_reads
+		, logical_reads*1.0/executions as avg_logical_reads
+		, row_count*1.0/executions as avg_row_count
+		, writes*1.0/executions as avg_writes
 	Into xel.expensive_query_stats_cpu
 	From cte 
 	GO
 
 	;With cte as (
-	Select duration,executions,eq.query_id,eqc.rate,sql_text,cast(eq.query_id as varchar(6)) as Name
+	Select cpu_time,duration, physical_reads, logical_reads, row_count
+		, writes, executions,eq.query_id,eqc.rate,sql_text,cast(eq.query_id as varchar(6)) as Name
 	From 
 		xel.expensive_query eq 
 		inner join xel.expensive_query_combined eqc on eq.query_id = eqc.query_id and category = 'duration' 
 	union all
-	Select sum(duration),sum(executions),999999,11,'All other queries','Others'
+	Select sum(cpu_time),sum(duration), sum(physical_reads), sum(logical_reads), sum(row_count)
+		, sum(writes),sum(executions),999999,11,'All other queries','Others'
 	From 
 		xel.expensive_query eq
 	Where
 		query_id not in (select query_id from xel.expensive_query_combined where category = 'duration')
 	)
-	Select query_id, rate, sql_text,duration,executions,name, 1.0 * duration/(Select sum(duration) from cte) as percentage, duration/executions as avg_duration
+	Select query_id, rate, sql_text
+		, cpu_time * 1.0/1000000 as cpu_time_s
+		, duration * 1.0/1000000 as duration_time_s
+		, physical_reads
+		, logical_reads
+		, row_count
+		, writes
+		, executions
+		, duration/(Select sum(duration) from cte) as percentage
+		, cpu_time*1.0/executions/1000000 as avg_cpu_time_s
+		, duration*1.0/executions/1000000 as avg_duration_time_s
+		, physical_reads*1.0/executions as avg_physical_reads
+		, logical_reads*1.0/executions as avg_logical_reads
+		, row_count*1.0/executions as avg_row_count
+		, writes*1.0/executions as avg_writes
 	Into xel.expensive_query_stats_duration
 	From cte 
 	GO
 
 	;With cte as (
-	Select physical_reads,executions,eq.query_id,eqc.rate,sql_text,cast(eq.query_id as varchar(6)) as Name
+	Select cpu_time,duration, physical_reads, logical_reads, row_count
+		, writes, executions,eq.query_id,eqc.rate,sql_text,cast(eq.query_id as varchar(6)) as Name
 	From 
 		xel.expensive_query eq 
 		inner join xel.expensive_query_combined eqc on eq.query_id = eqc.query_id and category = 'physical_reads' 
 	union all
-	Select sum(physical_reads),sum(executions),999999,11,'All other queries','Others'
+	Select sum(cpu_time),sum(duration), sum(physical_reads), sum(logical_reads), sum(row_count)
+		, sum(writes),sum(executions),999999,11,'All other queries','Others'
 	From 
 		xel.expensive_query eq
 	Where
 		query_id not in (select query_id from xel.expensive_query_combined where category = 'physical_reads')
 	)
-	Select query_id, rate, sql_text,physical_reads,executions,name, 1.0 * physical_reads/(Select sum(physical_reads) from cte) as percentage, physical_reads/executions as avg_physical_reads
+	Select query_id, rate, sql_text
+		, cpu_time * 1.0/1000000 as cpu_time_s
+		, duration * 1.0/1000000 as duration_time_s
+		, physical_reads
+		, logical_reads
+		, row_count
+		, writes
+		, executions
+		, physical_reads *1.0 /(Select sum(physical_reads) from cte) as percentage
+		, cpu_time*1.0/executions/1000000 as avg_cpu_time_s
+		, duration*1.0/executions/1000000 as avg_duration_time_s
+		, physical_reads*1.0/executions as avg_physical_reads
+		, logical_reads*1.0/executions as avg_logical_reads
+		, row_count*1.0/executions as avg_row_count
+		, writes*1.0/executions as avg_writes
 	Into xel.expensive_query_stats_physical_reads
 	From cte 
 	GO
 
 	;With cte as (
-	Select logical_reads,executions,eq.query_id,eqc.rate,sql_text,cast(eq.query_id as varchar(6)) as Name
+	Select cpu_time,duration, physical_reads, logical_reads, row_count
+		, writes, executions,eq.query_id,eqc.rate,sql_text,cast(eq.query_id as varchar(6)) as Name
 	From 
 		xel.expensive_query eq 
 		inner join xel.expensive_query_combined eqc on eq.query_id = eqc.query_id and category = 'logical_reads' 
 	union all
-	Select sum(logical_reads),sum(executions),999999,11,'All other queries','Others'
+	Select sum(cpu_time),sum(duration), sum(physical_reads), sum(logical_reads), sum(row_count)
+		, sum(writes),sum(executions),999999,11,'All other queries','Others'
 	From 
 		xel.expensive_query eq
 	Where
 		query_id not in (select query_id from xel.expensive_query_combined where category = 'logical_reads')
 	)
-	Select query_id, rate, sql_text,logical_reads,executions,name, 1.0 * logical_reads/(Select sum(logical_reads) from cte) as percentage, logical_reads/executions as avg_logical_reads
+	Select query_id, rate, sql_text
+		, cpu_time * 1.0/1000000 as cpu_time_s
+		, duration * 1.0/1000000 as duration_time_s
+		, physical_reads
+		, logical_reads
+		, row_count
+		, writes
+		, executions
+		, logical_reads*1.0/(Select sum(logical_reads) from cte) as percentage
+		, cpu_time*1.0/executions/1000000 as avg_cpu_time_s
+		, duration*1.0/executions/1000000 as avg_duration_time_s
+		, physical_reads*1.0/executions as avg_physical_reads
+		, logical_reads*1.0/executions as avg_logical_reads
+		, row_count*1.0/executions as avg_row_count
+		, writes*1.0/executions as avg_writes
 	Into xel.expensive_query_stats_logical_reads
 	From cte 
 	GO
 
 	;With cte as (
-	Select row_count,executions,eq.query_id,eqc.rate,sql_text,cast(eq.query_id as varchar(6)) as Name
+	Select cpu_time,duration, physical_reads, logical_reads, row_count
+		, writes, executions,eq.query_id,eqc.rate,sql_text,cast(eq.query_id as varchar(6)) as Name
 	From 
 		xel.expensive_query eq 
 		inner join xel.expensive_query_combined eqc on eq.query_id = eqc.query_id and category = 'row_count' 
 	union all
-	Select sum(row_count),sum(executions),999999,11,'All other queries','Others'
+	Select sum(cpu_time),sum(duration), sum(physical_reads), sum(logical_reads), sum(row_count)
+		, sum(writes),sum(executions),999999,11,'All other queries','Others'
 	From 
 		xel.expensive_query eq
 	Where
 		query_id not in (select query_id from xel.expensive_query_combined where category = 'row_count')
 	)
-	Select query_id, rate, sql_text,row_count,executions,name, 1.0 * row_count/(Select sum(row_count) from cte) as percentage, row_count/executions as avg_row_count
+	Select query_id, rate, sql_text
+		, cpu_time * 1.0/1000000 as cpu_time_s
+		, duration * 1.0/1000000 as duration_time_s
+		, physical_reads
+		, logical_reads
+		, row_count
+		, writes
+		, executions
+		, row_count*1.0/(Select sum(row_count) from cte) as percentage
+		, cpu_time*1.0/executions/1000000 as avg_cpu_time_s
+		, duration*1.0/executions/1000000 as avg_duration_time_s
+		, physical_reads*1.0/executions as avg_physical_reads
+		, logical_reads*1.0/executions as avg_logical_reads
+		, row_count*1.0/executions as avg_row_count
+		, writes*1.0/executions as avg_writes
 	Into xel.expensive_query_stats_row_count
 	From cte 
 	GO
+	
 	;With cte as (
-	Select writes,executions,eq.query_id,eqc.rate,sql_text,cast(eq.query_id as varchar(6)) as Name
+	Select cpu_time,duration, physical_reads, logical_reads, row_count
+		, writes, executions,eq.query_id,eqc.rate,sql_text,cast(eq.query_id as varchar(6)) as Name
 	From 
 		xel.expensive_query eq 
 		inner join xel.expensive_query_combined eqc on eq.query_id = eqc.query_id and category = 'writes' 
 	union all
-	Select sum(row_count),sum(executions),999999,11,'All other queries','Others'
+	Select sum(cpu_time),sum(duration), sum(physical_reads), sum(logical_reads), sum(row_count)
+		, sum(writes),sum(executions),999999,11,'All other queries','Others'
 	From 
 		xel.expensive_query eq
 	Where
 		query_id not in (select query_id from xel.expensive_query_combined where category = 'writes')
 	)
-	Select query_id, rate, sql_text,writes,executions,name, 1.0 * writes/(Select sum(writes) from cte) as percentage, writes/executions as avg_writes
+	Select query_id, rate, sql_text
+		, cpu_time * 1.0/1000000 as cpu_time_s
+		, duration * 1.0/1000000 as duration_time_s
+		, physical_reads
+		, logical_reads
+		, row_count
+		, writes
+		, executions
+		, writes*1.0/(Select sum(writes) from cte) as percentage
+		, cpu_time*1.0/executions/1000000 as avg_cpu_time_s
+		, duration*1.0/executions/1000000 as avg_duration_time_s
+		, physical_reads*1.0/executions as avg_physical_reads
+		, logical_reads*1.0/executions as avg_logical_reads
+		, row_count*1.0/executions as avg_row_count
+		, writes*1.0/executions as avg_writes
 	Into xel.expensive_query_stats_writes
 	From cte 
 	GO
+
 	Create Function ufn_ListQueryActivity(@attach_activity_id varchar(200))
     RETURNS @QueryActivity TABLE
     (
@@ -2092,7 +2188,7 @@ $sql = ";with cte as (
     , ActivityID 
     , number_of_events
     , total_duration
-    , ROW_NUMBER() over (partition by a.query_id order by number_of_events desc) as [rank]
+    , ROW_NUMBER() over (partition by a.query_id order by total_duration desc) as [rank]
 	from xel.expensive_query_activities a 
 	where a.query_id in (Select query_id from xel.expensive_query) 
 	), cteTop10Query as

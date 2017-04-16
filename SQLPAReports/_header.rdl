@@ -927,7 +927,7 @@
                       <Width>0.6018in</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>0.5476in</Width>
+                      <Width>0.70732in</Width>
                     </TablixColumn>
                     <TablixColumn>
                       <Width>0.5424in</Width>
@@ -1099,7 +1099,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Blocking</Value>
+                                      <Value>Snapshot</Value>
                                       <Style>
                                         <FontSize>8pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
@@ -1526,7 +1526,7 @@
                 <Top>1.02778in</Top>
                 <Left>0.02776in</Left>
                 <Height>0.25in</Height>
-                <Width>7.30324in</Width>
+                <Width>7.46296in</Width>
                 <ZIndex>11</ZIndex>
                 <Style>
                   <Border>

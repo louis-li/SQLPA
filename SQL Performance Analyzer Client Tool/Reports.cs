@@ -19,6 +19,7 @@ using System.Collections.ObjectModel;
 using System.Management.Automation;
 using System.Diagnostics;
 using Microsoft.Reporting.WinForms;
+using ExportToExcel;
 
 namespace SQL_PTO_Report
 {
@@ -145,7 +146,6 @@ namespace SQL_PTO_Report
                 panel1.Left = (this.Size.Width - panel1.Size.Width) / 2;
                 panel1.Top = (this.Size.Height - panel1.Size.Height) / 2;
                 //panel1.Visible = true;
-                //timer2.Enabled = true;
 
                 BindDbNames();
 
@@ -183,7 +183,7 @@ namespace SQL_PTO_Report
                 //}
                 UpdateDataFolder();
 
-                timer1.Enabled = false;
+                timerProcessData.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -347,7 +347,7 @@ namespace SQL_PTO_Report
 
             // invoke execution on the pipeline (collecting output)
             asyncResult = PowerShellInstance.BeginInvoke();
-            timer1.Enabled = true;
+            timerProcessData.Enabled = true;
             tssbLoadData.Enabled = false;
             tsslStatus.Text = "Data Loading...";
 
@@ -370,7 +370,7 @@ namespace SQL_PTO_Report
             if (asyncResult != null & asyncResult.IsCompleted == true)
             {
                 tssbLoadData.Enabled = true;
-                timer1.Enabled = false;
+                timerProcessData.Enabled = false;
                 PowerShellInstance.Dispose();
                 PowerShellInstance = null;
                 tsslStatus.Text = "Data Loading Completed.";
@@ -494,12 +494,6 @@ namespace SQL_PTO_Report
             rs.Dispose();
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            timer2.Enabled = false;
-            panel1.Visible = false;
-        }
-
         private void toolStripSplitButton3_ButtonClick(object sender, EventArgs e)
         {
             panel1.Visible = !panel1.Visible;
@@ -591,6 +585,313 @@ namespace SQL_PTO_Report
             frmPerfQuery.WindowState = FormWindowState.Maximized;
             frmPerfQuery.Show();
             frmPerfQuery.BringToFront();
+        }
+
+        private void btnExport_ButtonClick(object sender, EventArgs e)
+        {
+            DataSet dsExpensiveQuery = new DataSet();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["SQL_PTO_Report.Properties.Settings.SQLPTOConnectionString"].ConnectionString))
+            {
+                con.Open();
+                con.ChangeDatabase(sbDbNames.Text);
+                //Data Source
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "select * from " + sbDbNames.Text + ".dbo.SourceFileName";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("Source");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //SQL Server
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = " Select* from SqlServer";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("SQLServer");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Configuration
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "select * from dbo.SystemConfiguration";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("Configuration");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Capture time
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select cast(min(CounterDateTime) as varchar(19)) as begin_time, cast(max(counterDateTime) as varchar(19)) as end_time from dbo.counterdata d inner join dbo.CounterDetails dt On d.CounterID = dt.counterID ";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("Capture");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Wait Stats
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select * from dbo.WaitStats";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("WaitStats");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //CPU query
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select * from xel.expensive_query_stats_cpu order by query_id ";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("CpuQuery");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Duration 
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select * from xel.expensive_query_stats_duration order by rate ";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("DurationQuery");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Physical read 
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select * from xel.expensive_query_stats_physical_reads order by rate ";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("PhysicalReadQuery");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Logical read 
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select * from xel.expensive_query_stats_logical_reads order by rate ";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("LogicalReadQuery");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Row count
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select * from xel.expensive_query_stats_row_count order by rate ";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("RowCountQuery");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Writes
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select * from xel.expensive_query_stats_writes order by rate ";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("WritesQuery");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Snapshots
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select * from Snapshot.Blocking order by Timestamp,session_id";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("Snapshots");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //DMV
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        select top 10 
+	                        plan_id
+	                        ,'0x'+CONVERT(varchar(max),sql_handle,2) as sql_handle
+	                        ,statement_start_offset
+	                        ,statement_end_offset
+	                        ,plan_generation_num
+	                        ,'0x'+CONVERT(varchar(max),plan_handle,2) as plan_handle
+	                        ,creation_time
+	                        ,last_execution_time
+	                        ,execution_count
+	                        ,total_worker_time
+	                        ,last_worker_time
+	                        ,min_worker_time
+	                        ,max_worker_time
+	                        ,total_physical_reads
+	                        ,last_physical_reads
+	                        ,min_physical_reads
+	                        ,max_physical_reads
+	                        ,total_logical_writes
+	                        ,last_logical_writes
+	                        ,min_logical_writes
+	                        ,max_logical_writes
+	                        ,total_logical_reads
+	                        ,last_logical_reads
+	                        ,min_logical_reads
+	                        ,max_logical_reads
+	                        ,total_clr_time
+	                        ,last_clr_time
+	                        ,min_clr_time
+	                        ,max_clr_time
+	                        ,total_elapsed_time
+	                        ,last_elapsed_time
+	                        ,min_elapsed_time
+	                        ,max_elapsed_time
+	                        ,'0x'+CONVERT(varchar(max),query_hash,2) as query_hash
+	                        ,'0x'+CONVERT(varchar(max),query_plan_hash,2) as query_plan_hash
+	                        ,total_rows
+	                        ,last_rows
+	                        ,min_rows
+	                        ,max_rows
+	                        --,query_plan
+	                        ,text
+	                        ,text_filtered
+	                        ,IsQueryHinted
+	                        ,UseUDF
+	                        ,MissingIndexes
+	                        ,ImplicitConversion
+	                        ,CursorPresent
+	                        ,NoJoin
+	                        ,ColumnsWithNoStatistics
+	                        ,SpillToTempDb
+	                        ,PlanAffectingConvert
+	                        ,PlanAffectingConvertCE
+	                        ,UnmatchedIndex
+                        from vwCachedPlan
+                        Order by [total_worker_time] Desc";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("DMV");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Disabled Index
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select* from dbo.Indexes where is_disabled = 'true'";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("DisabledIndexes");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Duplicated Index
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select* from dbo.vwDupIndex";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("DuplicatedIndexes");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Fill Factor
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select* from dbo.Indexes where fill_factor > 0";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("FillFactor");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //FK with no Index
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = @"select* from dbo.FKWithNoIndex";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dtQuery = new DataTable("FKNoIndex");
+                    dtQuery.Load(reader);
+                    dsExpensiveQuery.Tables.Add(dtQuery);
+                }
+                //Fragmented Index
+                try
+                {
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.CommandText = @"select* from dbo.IndexFragmentation order by fragmentation desc";
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        DataTable dtQuery = new DataTable("FragmentedIndexes");
+                        dtQuery.Load(reader);
+                        dsExpensiveQuery.Tables.Add(dtQuery);
+                    }
+                }
+                catch { }
+            }
+
+            //Get plan folder
+            string strFolder = ConfigurationManager.AppSettings["CollectedDataFolder"];
+            string exportFolder, exportFilename;
+            string strCurrentFolder;
+            using (DataSet dsFolder = new DataSet())
+            {
+                SelectRows(dsFolder, "select * from " + sbDbNames.Text + ".dbo.SourceFileName");
+                strCurrentFolder = dsFolder.Tables[0].Rows[0][0].ToString();
+                exportFolder = Path.Combine(strFolder, strCurrentFolder);
+                exportFolder = Path.Combine(exportFolder, "Exported");
+            }
+
+            //Prepare folder
+            string exportDmvFolder = Path.Combine(exportFolder, "DMV_Query_Plan");
+            if (!Directory.Exists(exportFolder))
+            {
+                Directory.CreateDirectory(exportFolder);
+                Directory.CreateDirectory(exportDmvFolder);
+            }
+
+            //Export Excel files
+            exportFilename = Path.Combine(exportFolder, strCurrentFolder + ".xlsx");
+            CreateExcelFile.CreateExcelDocument(dsExpensiveQuery, @exportFilename);
+
+            //Export DMV query plans
+            string planQuery = @"select top 10 ROW_NUMBER() over (order by [total_worker_time] Desc) as query_id
+	                                ,query_plan
+                                from " + sbDbNames.Text + @".dbo.vwCachedPlan
+                                Order by [total_worker_time] Desc
+                                ";
+            DataSet plans = new DataSet();
+            SelectRows(plans, planQuery);
+            StreamWriter outputFile;
+            foreach (DataRow row in plans.Tables[0].Rows)
+            {
+                using (outputFile = new StreamWriter(Path.Combine(exportDmvFolder, row[0].ToString()) + @".sqlplan"))
+                {
+                    outputFile.Write(row[1].ToString());
+                }
+            }
+
+
+            //Generate word exported file
+            string _sPathFilePDF = String.Empty;
+            string _sSuggestedName = String.Empty;
+
+            Microsoft.Reporting.WinForms.ReportViewer rptViewer = new ReportViewer();
+            rptViewer.ServerReport.ReportPath = "/SQLPTOReports/ExportedTemplate";
+            byte[] byteViewer = rptViewer.ServerReport.Render("WORD");
+            exportFilename = Path.Combine(exportFolder, strCurrentFolder + ".doc");
+            FileStream newFile = new FileStream(exportFilename, FileMode.Create);
+            newFile.Write(byteViewer, 0, byteViewer.Length);
+            newFile.Close();
+
+            rptViewer.ServerReport.ReportPath = "/SQLPTOReports/ExportedReport";
+            byteViewer = rptViewer.ServerReport.Render("WORD");
+            exportFilename = Path.Combine(exportFolder, strCurrentFolder + "_PTOReport.doc");
+            newFile = new FileStream(exportFilename, FileMode.Create);
+            newFile.Write(byteViewer, 0, byteViewer.Length);
+            newFile.Close();
+
+            //Show message
+            //MessageBox.Show("Export completed!");
+            OpenFolder(exportFolder);
+        }
+
+
+        private void Reports_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (tsslStatus.Text == "Data Loading...")
+            {
+                if (MessageBox.Show("Data loading is in progress, exiting will terminate the process, continue?") == DialogResult.No)
+                    e.Cancel = true;
+            }
         }
     }
 }

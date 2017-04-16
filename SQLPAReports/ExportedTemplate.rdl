@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Subreport Name="Dashboard">
+            <ReportName>Dashboard</ReportName>
+            <Height>1.30208in</Height>
+            <Width>6.5in</Width>
+            <DocumentMapLabel>Dashboard</DocumentMapLabel>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="Evaluation">
+            <ReportName>Evaluation</ReportName>
+            <Top>1.37153in</Top>
+            <Height>1.21875in</Height>
+            <Width>6.5in</Width>
+            <ZIndex>1</ZIndex>
+            <DocumentMapLabel>Evaluation</DocumentMapLabel>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="Waits">
+            <ReportName>Waits</ReportName>
+            <Top>2.65972in</Top>
+            <Height>1.21875in</Height>
+            <Width>6.5in</Width>
+            <ZIndex>2</ZIndex>
+            <DocumentMapLabel>Waitstats</DocumentMapLabel>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="System">
+            <ReportName>SystemInfo</ReportName>
+            <Top>3.99708in</Top>
+            <Height>1.21875in</Height>
+            <Width>6.5in</Width>
+            <ZIndex>3</ZIndex>
+            <DocumentMapLabel>System</DocumentMapLabel>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="DMV">
+            <ReportName>DMV</ReportName>
+            <Top>5.28528in</Top>
+            <Height>1.21875in</Height>
+            <Width>6.5in</Width>
+            <ZIndex>4</ZIndex>
+            <DocumentMapLabel>DMV</DocumentMapLabel>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="xEvents">
+            <ReportName>xEvent_Events</ReportName>
+            <Top>6.54569in</Top>
+            <Height>1.21875in</Height>
+            <Width>6.5in</Width>
+            <ZIndex>5</ZIndex>
+            <DocumentMapLabel>xEvents</DocumentMapLabel>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="xEventsQueries">
+            <ReportName>xEvents_Queries</ReportName>
+            <Top>7.83389in</Top>
+            <Height>1.21875in</Height>
+            <Width>6.5in</Width>
+            <ZIndex>6</ZIndex>
+            <DocumentMapLabel>Expensive Queries</DocumentMapLabel>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+        </ReportItems>
+        <Height>10.78583in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>31e30d0f-278e-4420-aa06-e0ee33926b5d</rd:ReportID>
+</Report>

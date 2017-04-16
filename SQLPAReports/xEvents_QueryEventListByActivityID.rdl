@@ -84,7 +84,7 @@ order by number desc</CommandText>
           </QueryParameter>
         </QueryParameters>
         <CommandText>select * from xel.QueryHist
-where a_attach_activity_id = (@ActivityID)</CommandText>
+where a_attach_activity_id like left(@ActivityID,36) + '%'</CommandText>
       </Query>
       <Fields>
         <Field Name="Start_Time">

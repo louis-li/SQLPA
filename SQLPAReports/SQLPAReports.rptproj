@@ -198,10 +198,6 @@
       <FullPath>xEvents_Queries.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>xEvents_QueryEventList_NotNeed.rdl</Name>
-      <FullPath>xEvents_QueryEventList_NotNeed.rdl</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>xEvents_QueryEventListByActivityID.rdl</Name>
       <FullPath>xEvents_QueryEventListByActivityID.rdl</FullPath>
     </ProjectItem>
@@ -212,6 +208,14 @@
     <ProjectItem>
       <Name>xEvents_Writes.rdl</Name>
       <FullPath>xEvents_Writes.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>ExportedTemplate.rdl</Name>
+      <FullPath>ExportedTemplate.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>ExportedReport.rdl</Name>
+      <FullPath>ExportedReport.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>

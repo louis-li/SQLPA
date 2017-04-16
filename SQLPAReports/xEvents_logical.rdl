@@ -125,25 +125,61 @@ order by rate</CommandText>
           <DataField>sql_text</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="cpu_time_s">
+          <DataField>cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="logical_reads">
           <DataField>logical_reads</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="duration_time_s">
+          <DataField>duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="executions">
           <DataField>executions</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Name">
-          <DataField>name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="physical_reads">
+          <DataField>physical_reads</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
         <Field Name="percentage">
           <DataField>percentage</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="row_count">
+          <DataField>row_count</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
         <Field Name="avg_logical_reads">
           <DataField>avg_logical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="writes">
+          <DataField>writes</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="avg_cpu_time_s">
+          <DataField>avg_cpu_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_duration_time_s">
+          <DataField>avg_duration_time_s</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_physical_reads">
+          <DataField>avg_physical_reads</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_row_count">
+          <DataField>avg_row_count</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="avg_writes">
+          <DataField>avg_writes</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -888,15 +924,15 @@ order by rate</CommandText>
                 <ChartMember>
                   <Group Name="Chart3_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!Name.Value</GroupExpression>
+                      <GroupExpression>=Fields!query_id.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!Name.Value</Value>
+                      <Value>=Fields!query_id.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!Name.Value</Label>
+                  <Label>=Fields!query_id.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -1441,21 +1477,21 @@ order by rate</CommandText>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Name">
+                        <Textbox Name="query_id">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Name.Value</Value>
+                                  <Value>=Fields!query_id.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Name</rd:DefaultName>
+                          <rd:DefaultName>query_id</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>

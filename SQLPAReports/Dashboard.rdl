@@ -981,7 +981,7 @@ order by countername, recordindex</CommandText>
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="PhysicalIOQueryDS">
+    <DataSet Name="CpuQueryDS">
       <Query>
         <DataSourceName>SQLPTO</DataSourceName>
         <CommandText>Select eq.*
@@ -991,7 +991,7 @@ order by countername, recordindex</CommandText>
 	,Case when Exists (select * from xel.plan_affecting_convert pac where pac.a_query_hash = eq.query_hash ) THEN 1 ELSE 0 END as plan_affecting_convert
 From 
 	xel.expensive_query eq
-	inner join xel.expensive_query_combined eqc on eq.query_id = eqc.query_id and eqc.category = 'physical_reads'
+	inner join xel.expensive_query_combined eqc on eq.query_id = eqc.query_id and eqc.category = 'CPU'
 Order by 
 	rate</CommandText>
       </Query>
@@ -2195,7 +2195,7 @@ order by query_id</CommandText>
               </Border>
             </Style>
           </Tablix>
-          <Chart Name="Chart4">
+          <Chart Name="BatchRequestChart">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
@@ -4231,7 +4231,7 @@ order by query_id</CommandText>
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Chart Name="Chart7">
+          <Chart Name="QueueChart">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
@@ -4610,7 +4610,7 @@ order by query_id</CommandText>
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Chart Name="Chart8">
+          <Chart Name="LatencyChart">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
@@ -4989,7 +4989,7 @@ order by query_id</CommandText>
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Chart Name="Chart9">
+          <Chart Name="IOPSChart">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
@@ -7352,7 +7352,7 @@ order by query_id</CommandText>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>PhysicalIOQueryDS</DataSetName>
+            <DataSetName>CpuQueryDS</DataSetName>
             <PageBreak>
               <BreakLocation>Start</BreakLocation>
             </PageBreak>
