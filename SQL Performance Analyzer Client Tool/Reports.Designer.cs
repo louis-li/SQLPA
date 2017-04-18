@@ -50,6 +50,7 @@
             this.dMVPlansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnQueriesAndPlans = new System.Windows.Forms.ToolStripSplitButton();
             this.timerProcessData = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAboutOK = new System.Windows.Forms.Button();
@@ -85,6 +86,7 @@
             this.sbDbNames,
             this.toolStripSplitButton1,
             this.toolStripSplitButton2,
+            this.btnQueriesAndPlans,
             this.btnExport,
             this.tssbLoadData,
             this.toolStripProgressBar1,
@@ -246,6 +248,16 @@
             this.tsslStatus.Size = new System.Drawing.Size(26, 17);
             this.tsslStatus.Text = "Idle";
             this.tsslStatus.Click += new System.EventHandler(this.tsslStatus_Click);
+            // 
+            // btnQueriesAndPlans
+            // 
+            this.btnQueriesAndPlans.DropDownButtonWidth = 0;
+            this.btnQueriesAndPlans.Image = ((System.Drawing.Image)(resources.GetObject("btnQueriesAndPlans.Image")));
+            this.btnQueriesAndPlans.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnQueriesAndPlans.Name = "btnQueriesAndPlans";
+            this.btnQueriesAndPlans.Size = new System.Drawing.Size(122, 20);
+            this.btnQueriesAndPlans.Text = "Queries and Plans";
+            this.btnQueriesAndPlans.ButtonClick += new System.EventHandler(this.btnQueriesAndPlans_ButtonClick);
             // 
             // timerProcessData
             // 
@@ -429,6 +441,7 @@
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
         private System.Windows.Forms.ToolStripSplitButton btnExport;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripSplitButton btnQueriesAndPlans;
     }
 }
 

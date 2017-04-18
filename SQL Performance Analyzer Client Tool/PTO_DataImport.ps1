@@ -1141,7 +1141,7 @@ param([string]$InstanceName,
 	}
 	catch
 	{
-		Write-Log "$(Get-Date) - Load PerfCounters failed: $_"
+		Write-Log "$(Get-Date) - Load PerfCounters failed: $_. Delete the database and try this application using Run As Administrator."
 
 	}
 }

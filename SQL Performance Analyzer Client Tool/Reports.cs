@@ -29,6 +29,7 @@ namespace SQL_PTO_Report
         private IAsyncResult asyncResult;
         PowerShell PowerShellInstance;
         frmPerfMonQueries frmPerfQuery = null;
+        ExpensiveQueriesAndPlans frmExpensiveQueriesAndPlans = null;
         private string SSRSWS = ConfigurationManager.AppSettings["ReportingServiceWS"];
 
         public void ShowQueryEvents(string ActivityID)
@@ -219,6 +220,13 @@ namespace SQL_PTO_Report
                 frmPerfQuery = null;
             }
 
+            if (frmExpensiveQueriesAndPlans != null)
+            {
+                frmExpensiveQueriesAndPlans.Close();
+                frmExpensiveQueriesAndPlans.Dispose();
+                frmExpensiveQueriesAndPlans = null;
+            }
+
             //cbDbNames.ComboBox.Hide();
             reportViewer1.Focus();
         }
@@ -322,6 +330,7 @@ namespace SQL_PTO_Report
 
         private void tssbLoadData_ButtonClick(object sender, EventArgs e)
         {
+
             //Scan data and load
             string psScript;
             string strLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -892,6 +901,20 @@ namespace SQL_PTO_Report
                 if (MessageBox.Show("Data loading is in progress, exiting will terminate the process, continue?") == DialogResult.No)
                     e.Cancel = true;
             }
+        }
+
+        private void btnQueriesAndPlans_ButtonClick(object sender, EventArgs e)
+        {
+            if (frmExpensiveQueriesAndPlans == null || frmExpensiveQueriesAndPlans.IsDisposed)
+            {
+                frmExpensiveQueriesAndPlans = new ExpensiveQueriesAndPlans();
+            }
+            frmExpensiveQueriesAndPlans.DatabaseName = sbDbNames.Text;
+            //frmPerfQuery.Width = Screen.PrimaryScreen.Bounds.Width;
+            //frmPerfQuery.Height = Screen.
+            frmExpensiveQueriesAndPlans.WindowState = FormWindowState.Maximized;
+            frmExpensiveQueriesAndPlans.Show();
+            frmExpensiveQueriesAndPlans.BringToFront();
         }
     }
 }

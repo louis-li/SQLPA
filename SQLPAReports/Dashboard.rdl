@@ -626,7 +626,7 @@ Group by CounterName
 UNION ALL
 --CPU
 select
-CounterName, min(value) as MinValue,max(value) as MaxValue
+CounterName,case when min(value) &gt; 0 then min(value) else 0 end   as MinValue,max(value) as MaxValue
 , avg(value) as AvgValue
 , Min(counterdatetime) as StartTime, Max(counterdatetime) as EndTime 
 from CpuUtil
