@@ -215,6 +215,35 @@ $LoadXeScript = {
 	#Write-Log "$(Get-Date) - Result: $msg"
     #Transform data after load
     $xEventScript = "
+		CREATE TABLE [xel].[plan_affecting_convert](
+			[e_Imported_File_Id] [bigint] NULL,
+			[e_Time_Of_Event] [smalldatetime] NULL,
+			[e_Time_Of_Event_utc] [datetime2](7) NULL,
+			[e_Time_Of_Event_local] [datetime2](7) NULL,
+			[c_compile_time] [bit] NULL,
+			[c_convert_issue] [nvarchar](max) NULL,
+			[c_expression] [nvarchar](max) NULL,
+			[a_attach_activity_id] [nvarchar](max) NULL,
+			[a_attach_activity_id_xfer] [nvarchar](max) NULL,
+			[a_sql_text] [nvarchar](max) NULL,
+			[a_query_hash] [decimal](38, 0) NULL,
+			[a_query_hash_bin] [varbinary](max) NULL
+		) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+		GO
+		CREATE TABLE [xel].[optimizer_timeout](
+			[e_Imported_File_Id] [bigint] NULL,
+			[e_Time_Of_Event] [smalldatetime] NULL,
+			[e_Time_Of_Event_utc] [datetime2](7) NULL,
+			[e_Time_Of_Event_local] [datetime2](7) NULL,
+			[c_timeout_type] [nvarchar](max) NULL,
+			[c_optimizer_timeout_task_number] [decimal](38, 0) NULL,
+			[a_attach_activity_id] [nvarchar](max) NULL,
+			[a_attach_activity_id_xfer] [nvarchar](max) NULL,
+			[a_sql_text] [nvarchar](max) NULL,
+			[a_query_hash] [decimal](38, 0) NULL,
+			[a_query_hash_bin] [varbinary](max) NULL
+		) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+		GO
         IF Exists (SELECT * FROM sys.tables WHERE Object_Name(OBject_id) = 'expensive_query_raw' AND SCHEMA_NAME(Schema_id) ='xel')
 	        DROP TABLE [xel].[expensive_query_raw]
 
@@ -2327,7 +2356,7 @@ $sql = ";with cte as (
 	    , p.a_sql_text
 	    , s.activityid
 	    ,CAST(Replace(RIGHT(a_attach_activity_id, CHARINDEX('[', REVERSE(a_attach_activity_id))-1),']','')  AS INT) 
-	    ,CONCAT('sort_warn_type=',c_sort_warning_type,' query_operation_node_id=',c_query_operation_node_id)
+	    ,CONCAT('sort_warn_type=',c_sort_warning_type) -- 2012 RTM doesn't support this ,' query_operation_node_id=',c_query_operation_node_id)
 		,0 as duration
 		,s.query_id
 		,s.number_of_events

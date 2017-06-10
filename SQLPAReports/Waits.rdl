@@ -98,8 +98,8 @@ where cast(percentage as float) &gt; 1.0</CommandText>
     <DataSet Name="Spinlocks">
       <Query>
         <DataSourceName>SQLPTO</DataSourceName>
-        <CommandText>;WITH cteSpinlocks1 AS (SELECT name, cast(collisions as decimal(19,4)) as collisions, cast(spins as decimal(19,4)) as spins, cast(spins_per_collision as decimal(19,4)) as spins_per_collision, cast(sleep_time as decimal(19,4)) as sleep_time, cast(backoffs as decimal(19,4)) as backoffs FROM Spinlocks_Begin),
-	cteSpinlocks2 AS (SELECT name, cast(collisions as decimal(19,4)) as collisions, cast(spins as decimal(19,4)) as spins, cast(spins_per_collision as decimal(19,4)) as spins_per_collision,  cast(sleep_time as decimal(19,4)) as sleep_time, cast(backoffs as decimal(19,4)) as backoffs FROM spinlocks_After)
+        <CommandText>;WITH cteSpinlocks1 AS (SELECT name, cast(collisions as float) as collisions, cast(spins as float) as spins, cast(spins_per_collision as float) as spins_per_collision, cast(sleep_time as float) as sleep_time, cast(backoffs as float) as backoffs FROM Spinlocks_Begin),
+	cteSpinlocks2 AS (SELECT name, cast(collisions as float) as collisions, cast(spins as float) as spins, cast(spins_per_collision as float) as spins_per_collision,  cast(sleep_time as float) as sleep_time, cast(backoffs as float) as backoffs FROM spinlocks_After)
 SELECT DISTINCT t1.name,
 		(t2.collisions-t1.collisions) AS collisions,
 		(t2.spins-t1.spins) AS spins,
@@ -111,7 +111,9 @@ SELECT DISTINCT t1.name,
 FROM cteSpinlocks1 t1 INNER JOIN cteSpinlocks2 t2 ON t1.name = t2.name
 GROUP BY t1.name, t1.collisions, t2.collisions, t1.spins, t2.spins, t1.spins_per_collision, t2.spins_per_collision, t1.sleep_time, t2.sleep_time, t1.backoffs, t2.backoffs
 HAVING (t2.spins-t1.spins) &gt; 0
-ORDER BY spins DESC;</CommandText>
+ORDER BY spins DESC;
+
+</CommandText>
       </Query>
       <Fields>
         <Field Name="name">
@@ -120,27 +122,27 @@ ORDER BY spins DESC;</CommandText>
         </Field>
         <Field Name="collisions">
           <DataField>collisions</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="spins">
           <DataField>spins</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="spins_per_collision">
           <DataField>spins_per_collision</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="sleep_time">
           <DataField>sleep_time</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="backoffs">
           <DataField>backoffs</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="spins_pct">
           <DataField>spins_pct</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="rn">
           <DataField>rn</DataField>

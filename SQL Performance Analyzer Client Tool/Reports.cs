@@ -703,14 +703,18 @@ namespace SQL_PTO_Report
                     dsExpensiveQuery.Tables.Add(dtQuery);
                 }
                 //Snapshots
-                using (SqlCommand cmd = con.CreateCommand())
+                try
                 {
-                    cmd.CommandText = @"select * from Snapshot.Blocking order by Timestamp,session_id";
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    DataTable dtQuery = new DataTable("Snapshots");
-                    dtQuery.Load(reader);
-                    dsExpensiveQuery.Tables.Add(dtQuery);
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.CommandText = @"select * from Snapshot.Blocking order by Timestamp,session_id";
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        DataTable dtQuery = new DataTable("Snapshots");
+                        dtQuery.Load(reader);
+                        dsExpensiveQuery.Tables.Add(dtQuery);
+                    }
                 }
+                catch { }
                 //DMV
                 using (SqlCommand cmd = con.CreateCommand())
                 {
@@ -777,41 +781,53 @@ namespace SQL_PTO_Report
                     dsExpensiveQuery.Tables.Add(dtQuery);
                 }
                 //Disabled Index
-                using (SqlCommand cmd = con.CreateCommand())
-                {
-                    cmd.CommandText = @"select* from dbo.Indexes where is_disabled = 'true'";
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    DataTable dtQuery = new DataTable("DisabledIndexes");
-                    dtQuery.Load(reader);
-                    dsExpensiveQuery.Tables.Add(dtQuery);
+                try { 
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.CommandText = @"select* from dbo.Indexes where is_disabled = 'true'";
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        DataTable dtQuery = new DataTable("DisabledIndexes");
+                        dtQuery.Load(reader);
+                        dsExpensiveQuery.Tables.Add(dtQuery);
+                    }
                 }
+                catch { }
                 //Duplicated Index
-                using (SqlCommand cmd = con.CreateCommand())
-                {
-                    cmd.CommandText = @"select* from dbo.vwDupIndex";
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    DataTable dtQuery = new DataTable("DuplicatedIndexes");
-                    dtQuery.Load(reader);
-                    dsExpensiveQuery.Tables.Add(dtQuery);
+                try { 
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.CommandText = @"select* from dbo.vwDupIndex";
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        DataTable dtQuery = new DataTable("DuplicatedIndexes");
+                        dtQuery.Load(reader);
+                        dsExpensiveQuery.Tables.Add(dtQuery);
+                    }
                 }
+                catch { }
                 //Fill Factor
-                using (SqlCommand cmd = con.CreateCommand())
-                {
-                    cmd.CommandText = @"select* from dbo.Indexes where fill_factor > 0";
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    DataTable dtQuery = new DataTable("FillFactor");
-                    dtQuery.Load(reader);
-                    dsExpensiveQuery.Tables.Add(dtQuery);
+                try { 
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.CommandText = @"select* from dbo.Indexes where fill_factor > 0";
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        DataTable dtQuery = new DataTable("FillFactor");
+                        dtQuery.Load(reader);
+                        dsExpensiveQuery.Tables.Add(dtQuery);
+                    }
                 }
+                catch { }
                 //FK with no Index
-                using (SqlCommand cmd = con.CreateCommand())
-                {
-                    cmd.CommandText = @"select* from dbo.FKWithNoIndex";
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    DataTable dtQuery = new DataTable("FKNoIndex");
-                    dtQuery.Load(reader);
-                    dsExpensiveQuery.Tables.Add(dtQuery);
+                try { 
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.CommandText = @"select* from dbo.FKWithNoIndex";
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        DataTable dtQuery = new DataTable("FKNoIndex");
+                        dtQuery.Load(reader);
+                        dsExpensiveQuery.Tables.Add(dtQuery);
+                    }
                 }
+                catch { }
                 //Fragmented Index
                 try
                 {
