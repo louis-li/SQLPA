@@ -209,41 +209,12 @@ $LoadXeScript = {
 	[a_query_hash_bin] [varbinary](max) NULL
 	)"	
 
-    Invoke-Sqlcmd -ServerInstance $InstanceName -Database $Database -Query $QueryPostExecutionTableScript
     $XeLoader = Join-Path -Path $CurrentLocation -ChildPath  "Lib\xEvent\XELoader.exe"
     $msg = & $XeLoader -D"$DataFolder" -S"$InstanceName" -d"$database" -IRowStore
-	#Write-Log "$(Get-Date) - Result: $msg"
+	Write-Log "$(Get-Date) - Xeloader Result: $msg"
     #Transform data after load
+    Invoke-Sqlcmd -ServerInstance $InstanceName -Database $Database -Query $QueryPostExecutionTableScript
     $xEventScript = "
-		CREATE TABLE [xel].[plan_affecting_convert](
-			[e_Imported_File_Id] [bigint] NULL,
-			[e_Time_Of_Event] [smalldatetime] NULL,
-			[e_Time_Of_Event_utc] [datetime2](7) NULL,
-			[e_Time_Of_Event_local] [datetime2](7) NULL,
-			[c_compile_time] [bit] NULL,
-			[c_convert_issue] [nvarchar](max) NULL,
-			[c_expression] [nvarchar](max) NULL,
-			[a_attach_activity_id] [nvarchar](max) NULL,
-			[a_attach_activity_id_xfer] [nvarchar](max) NULL,
-			[a_sql_text] [nvarchar](max) NULL,
-			[a_query_hash] [decimal](38, 0) NULL,
-			[a_query_hash_bin] [varbinary](max) NULL
-		) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-		GO
-		CREATE TABLE [xel].[optimizer_timeout](
-			[e_Imported_File_Id] [bigint] NULL,
-			[e_Time_Of_Event] [smalldatetime] NULL,
-			[e_Time_Of_Event_utc] [datetime2](7) NULL,
-			[e_Time_Of_Event_local] [datetime2](7) NULL,
-			[c_timeout_type] [nvarchar](max) NULL,
-			[c_optimizer_timeout_task_number] [decimal](38, 0) NULL,
-			[a_attach_activity_id] [nvarchar](max) NULL,
-			[a_attach_activity_id_xfer] [nvarchar](max) NULL,
-			[a_sql_text] [nvarchar](max) NULL,
-			[a_query_hash] [decimal](38, 0) NULL,
-			[a_query_hash_bin] [varbinary](max) NULL
-		) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-		GO
         IF Exists (SELECT * FROM sys.tables WHERE Object_Name(OBject_id) = 'expensive_query_raw' AND SCHEMA_NAME(Schema_id) ='xel')
 	        DROP TABLE [xel].[expensive_query_raw]
 

@@ -31,6 +31,7 @@ namespace SQL_PTO_Report
         frmPerfMonQueries frmPerfQuery = null;
         ExpensiveQueriesAndPlans frmExpensiveQueriesAndPlans = null;
         private string SSRSWS = ConfigurationManager.AppSettings["ReportingServiceWS"];
+        private string SqlServer = ConfigurationManager.AppSettings["SQLServer"];
 
         public void ShowQueryEvents(string ActivityID)
         {
@@ -234,7 +235,8 @@ namespace SQL_PTO_Report
         private string GetPTODataSource()
         {
             ReportingService2010 rs = new ReportingService2010();
-            rs.Url = "http://localhost/ReportServer/ReportService2010.asmx";
+            //rs.Url = "http://localhost/ReportServer/ReportService2010.asmx";
+            rs.Url = SSRSWS;
             rs.Credentials = System.Net.CredentialCache.DefaultCredentials;
 
             DataSourceDefinition definition = null;
@@ -262,7 +264,7 @@ namespace SQL_PTO_Report
 
             DataSourceDefinition definition = new DataSourceDefinition();
             definition.CredentialRetrieval = CredentialRetrievalEnum.Integrated;
-            definition.ConnectString = "Data Source=(local);Initial Catalog=" + DbName;
+            definition.ConnectString = "Data Source=" + SqlServer + ";Initial Catalog=" + DbName;
             definition.Enabled = true;
             definition.EnabledSpecified = true;
             definition.Extension = "SQL";
@@ -348,7 +350,7 @@ namespace SQL_PTO_Report
             PowerShellInstance.AddScript(psScript);
 
             // use "AddParameter" to add a single parameter to the last command/script on the pipeline.
-            PowerShellInstance.AddParameter("InstanceName", "localhost");
+            PowerShellInstance.AddParameter("InstanceName", SqlServer);
             PowerShellInstance.AddParameter("Database", "SQLPTO");
             PowerShellInstance.AddParameter("CollectedDataFolder", ConfigurationManager.AppSettings["CollectedDataFolder"]);
             PowerShellInstance.AddParameter("CurrentLocation", System.IO.Path.GetDirectoryName(strLocation));
@@ -419,7 +421,7 @@ namespace SQL_PTO_Report
 
             DataSourceDefinition definition = new DataSourceDefinition();
             definition.CredentialRetrieval = CredentialRetrievalEnum.Integrated;
-            definition.ConnectString = "Data Source=(local);Initial Catalog=SQLPTO";
+            definition.ConnectString = "Data Source="+SqlServer+";Initial Catalog=SQLPTO";
             definition.Enabled = true;
             definition.EnabledSpecified = true;
             definition.Extension = "SQL";
@@ -434,7 +436,7 @@ namespace SQL_PTO_Report
 
             DataSourceDefinition definitionsum = new DataSourceDefinition();
             definitionsum.CredentialRetrieval = CredentialRetrievalEnum.Integrated;
-            definitionsum.ConnectString = "Data Source=(local);Initial Catalog=SQLPTOSummary";
+            definitionsum.ConnectString = "Data Source=" + SqlServer + ";Initial Catalog=SQLPTOSummary";
             definitionsum.Enabled = true;
             definitionsum.EnabledSpecified = true;
             definitionsum.Extension = "SQL";
