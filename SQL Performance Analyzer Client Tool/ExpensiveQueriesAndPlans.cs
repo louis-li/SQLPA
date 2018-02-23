@@ -122,9 +122,20 @@ namespace SQL_PTO_Report
                     con.ChangeDatabase(DatabaseName);
                     using (SqlCommand cmd = con.CreateCommand())
                     {
-                        cmd.CommandText = @"select query_id, left(a.attach_activity_id,36) as attach_activity_id , (Select count(*) from [xel].[query_post_execution_showplan] p where left(a.attach_activity_id,36) = left(p.a_attach_activity_id,36) ) as num_of_plans
+                        cmd.CommandText = @"select query_id, left(a.attach_activity_id,36) as attach_activity_id 
+                            INTO #1
                             from xel.expensive_query_attach_activity_id a 
-                            where query_id = " + queryId +"  group by  query_id, left(a.attach_activity_id,36) Order by num_of_plans desc";
+                            WHERE query_id = " + queryId + @" ;
+
+                            Select left(p.a_attach_activity_id,36) AS a_attach_activity_id,COUNT(*) as num_of_plans
+                            INTO #2
+                            FROM [xel].[query_post_execution_showplan] p 
+                            GROUP BY p.a_attach_activity_id;
+
+                            select query_id, attach_activity_id 
+                            , p.num_of_plans
+                            from #1 a INNER HASH JOIN #2 p ON a.attach_activity_id = p.a_attach_activity_id  
+                            Order by num_of_plans DESC;";
                         cmd.CommandTimeout = 0;
                         SqlDataReader reader = cmd.ExecuteReader();
                         DataTable dtActivities = new DataTable();

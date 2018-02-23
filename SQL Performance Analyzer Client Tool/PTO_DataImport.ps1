@@ -207,6 +207,144 @@ $LoadXeScript = {
 	[a_sql_text] [nvarchar](max) NULL,
 	[a_query_hash] [decimal](38, 0) NULL,
 	[a_query_hash_bin] [varbinary](max) NULL
+	)
+	GO
+	CREATE TABLE [xel].[missing_column_statistics](
+	[e_Imported_File_Id] [bigint] NULL,
+	[e_Time_Of_Event] [smalldatetime] NULL,
+	[e_Time_Of_Event_utc] [datetime2](7) NULL,
+	[e_Time_Of_Event_local] [datetime2](7) NULL,
+	[c_column_list] [nvarchar](max) NULL,
+	[a_attach_activity_id] [nvarchar](max) NULL,
+	[a_attach_activity_id_xfer] [nvarchar](max) NULL,
+	[a_callstack] [varbinary](max) NULL,
+	[a_callstack_debugcmd] [nvarchar](max) NULL,
+	[a_session_id] [int] NULL,
+	[a_sql_text] [nvarchar](max) NULL,
+	[a_query_hash] [decimal](38, 0) NULL,
+	[a_query_hash_bin] [varbinary](max) NULL
+	)
+	GO
+	CREATE TABLE [xel].[sql_statement_completed](
+	[e_Imported_File_Id] [bigint] NULL,
+	[e_Time_Of_Event] [smalldatetime] NULL,
+	[e_Time_Of_Event_utc] [datetime2](7) NULL,
+	[e_Time_Of_Event_local] [datetime2](7) NULL,
+	[c_duration] [bigint] NULL,
+	[c_cpu_time] [decimal](38, 0) NULL,
+	[c_physical_reads] [decimal](38, 0) NULL,
+	[c_logical_reads] [decimal](38, 0) NULL,
+	[c_writes] [decimal](38, 0) NULL,
+	[c_row_count] [decimal](38, 0) NULL,
+	[c_last_row_count] [decimal](38, 0) NULL,
+	[c_line_number] [int] NULL,
+	[c_offset] [int] NULL,
+	[c_offset_end] [int] NULL,
+	[c_statement] [nvarchar](max) NULL,
+	[c_parameterized_plan_handle] [varbinary](max) NULL,
+	[a_attach_activity_id] [nvarchar](max) NULL,
+	[a_attach_activity_id_xfer] [nvarchar](max) NULL,
+	[a_callstack] [varbinary](max) NULL,
+	[a_callstack_debugcmd] [nvarchar](max) NULL,
+	[a_session_id] [int] NULL,
+	[a_sql_text] [nvarchar](max) NULL,
+	[a_query_hash] [decimal](38, 0) NULL,
+	[a_query_hash_bin] [varbinary](max) NULL
+	)
+	GO
+	CREATE TABLE [xel].[sp_statement_completed](
+	[e_Imported_File_Id] [bigint] NULL,
+	[e_Time_Of_Event] [smalldatetime] NULL,
+	[e_Time_Of_Event_utc] [datetime2](7) NULL,
+	[e_Time_Of_Event_local] [datetime2](7) NULL,
+	[c_source_database_id] [bigint] NULL,
+	[c_object_id] [int] NULL,
+	[c_object_type] [nvarchar](max) NULL,
+	[c_duration] [bigint] NULL,
+	[c_cpu_time] [decimal](38, 0) NULL,
+	[c_physical_reads] [decimal](38, 0) NULL,
+	[c_logical_reads] [decimal](38, 0) NULL,
+	[c_writes] [decimal](38, 0) NULL,
+	[c_row_count] [decimal](38, 0) NULL,
+	[c_last_row_count] [decimal](38, 0) NULL,
+	[c_nest_level] [int] NULL,
+	[c_line_number] [int] NULL,
+	[c_offset] [int] NULL,
+	[c_offset_end] [int] NULL,
+	[c_object_name] [nvarchar](max) NULL,
+	[c_statement] [nvarchar](max) NULL,
+	[a_attach_activity_id] [nvarchar](max) NULL,
+	[a_attach_activity_id_xfer] [nvarchar](max) NULL,
+	[a_callstack] [varbinary](max) NULL,
+	[a_callstack_debugcmd] [nvarchar](max) NULL,
+	[a_session_id] [int] NULL,
+	[a_sql_text] [nvarchar](max) NULL,
+	[a_query_hash] [decimal](38, 0) NULL,
+	[a_query_hash_bin] [varbinary](max) NULL
+	)
+	GO
+	CREATE TABLE [xel].[wait_info](
+	[e_Imported_File_Id] [bigint] NULL,
+	[e_Time_Of_Event] [smalldatetime] NULL,
+	[e_Time_Of_Event_utc] [datetime2](7) NULL,
+	[e_Time_Of_Event_local] [datetime2](7) NULL,
+	[c_wait_type] [nvarchar](max) NULL,
+	[c_opcode] [nvarchar](max) NULL,
+	[c_duration] [decimal](38, 0) NULL,
+	[c_signal_duration] [decimal](38, 0) NULL,
+	[c_wait_resource] [decimal](38, 0) NULL,
+	[a_attach_activity_id] [nvarchar](max) NULL,
+	[a_attach_activity_id_xfer] [nvarchar](max) NULL,
+	[a_callstack] [varbinary](max) NULL,
+	[a_callstack_debugcmd] [nvarchar](max) NULL,
+	[a_session_id] [int] NULL,
+	[a_sql_text] [nvarchar](max) NULL,
+	[a_query_hash] [decimal](38, 0) NULL,
+	[a_query_hash_bin] [varbinary](max) NULL
+	)
+	GO
+	CREATE TABLE [xel].[wait_info_external](
+	[e_Imported_File_Id] [bigint] NULL,
+	[e_Time_Of_Event] [smalldatetime] NULL,
+	[e_Time_Of_Event_utc] [datetime2](7) NULL,
+	[e_Time_Of_Event_local] [datetime2](7) NULL,
+	[c_wait_type] [nvarchar](max) NULL,
+	[c_opcode] [nvarchar](max) NULL,
+	[c_duration] [decimal](38, 0) NULL,
+	[a_attach_activity_id] [nvarchar](max) NULL,
+	[a_attach_activity_id_xfer] [nvarchar](max) NULL,
+	[a_callstack] [varbinary](max) NULL,
+	[a_callstack_debugcmd] [nvarchar](max) NULL,
+	[a_session_id] [int] NULL,
+	[a_sql_text] [nvarchar](max) NULL,
+	[a_query_hash] [decimal](38, 0) NULL,
+	[a_query_hash_bin] [varbinary](max) NULL
+	)
+	GO
+	CREATE TABLE [dbo].[indexes](
+	[databaseID] [varchar](4000) NULL,
+	[DatabaseName] [varchar](4000) NULL,
+	[objectID] [varchar](4000) NULL,
+	[schemaName] [varchar](4000) NULL,
+	[objectName] [varchar](4000) NULL,
+	[indexID] [varchar](4000) NULL,
+	[indexName] [varchar](4000) NULL,
+	[indexType] [varchar](4000) NULL,
+	[is_primary_key] [varchar](4000) NULL,
+	[is_unique_constraint] [varchar](4000) NULL,
+	[is_unique] [varchar](4000) NULL,
+	[is_disabled] [varchar](4000) NULL,
+	[fill_factor] [varchar](4000) NULL,
+	[is_padded] [varchar](4000) NULL,
+	[has_filter] [varchar](4000) NULL,
+	[filter_definition] [varchar](4000) NULL,
+	[KeyCols] [varchar](4000) NULL,
+	[KeyColsOrdered] [varchar](4000) NULL,
+	[IncludedCols] [varchar](4000) NULL,
+	[IncludedColsOrdered] [varchar](4000) NULL,
+	[AllColsOrdered] [varchar](4000) NULL,
+	[KeyCols_data_length_bytes] [varchar](4000) NULL,
+	[Key_has_GUID] [varchar](4000) NULL
 	)"	
 
     $XeLoader = Join-Path -Path $CurrentLocation -ChildPath  "Lib\xEvent\XELoader.exe"

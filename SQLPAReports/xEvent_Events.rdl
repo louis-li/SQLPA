@@ -354,7 +354,6 @@ order by duration_ms desc</CommandText>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>1.49527in</Top>
-            <Left>0in</Left>
             <Height>0.45833in</Height>
             <Width>6.5in</Width>
             <Style>
@@ -369,7 +368,6 @@ order by duration_ms desc</CommandText>
           </Textbox>
           <Subreport Name="Subreport1">
             <ReportName>_header</ReportName>
-            <Left>0in</Left>
             <Height>1.42583in</Height>
             <Width>8.90043in</Width>
             <ZIndex>1</ZIndex>
@@ -709,7 +707,6 @@ order by duration_ms desc</CommandText>
             </TablixRowHierarchy>
             <DataSetName>PageSplitDS</DataSetName>
             <Top>6.16195in</Top>
-            <Left>0in</Left>
             <Height>0.75in</Height>
             <Width>5.78125in</Width>
             <ZIndex>2</ZIndex>
@@ -738,7 +735,6 @@ order by duration_ms desc</CommandText>
             </Paragraphs>
             <rd:DefaultName>Textbox23</rd:DefaultName>
             <Top>5.91195in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
             <Width>1.75in</Width>
             <ZIndex>3</ZIndex>
@@ -1282,7 +1278,6 @@ order by duration_ms desc</CommandText>
             </TablixRowHierarchy>
             <DataSetName>StatsUpdateDS</DataSetName>
             <Top>8.22097in</Top>
-            <Left>0in</Left>
             <Height>0.75in</Height>
             <Width>9.90043in</Width>
             <ZIndex>4</ZIndex>
@@ -1310,7 +1305,6 @@ order by duration_ms desc</CommandText>
             </Paragraphs>
             <rd:DefaultName>Textbox23</rd:DefaultName>
             <Top>7.97097in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
             <Width>1.75in</Width>
             <ZIndex>5</ZIndex>
@@ -1344,7 +1338,6 @@ order by duration_ms desc</CommandText>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
             <Top>4.96118in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
             <Width>1.54167in</Width>
             <ZIndex>6</ZIndex>
@@ -1596,7 +1589,6 @@ order by duration_ms desc</CommandText>
             </TablixRowHierarchy>
             <DataSetName>xEventSumDS</DataSetName>
             <Top>5.21118in</Top>
-            <Left>0in</Left>
             <Height>0.5in</Height>
             <Width>5in</Width>
             <ZIndex>7</ZIndex>
@@ -1953,7 +1945,6 @@ order by duration_ms desc</CommandText>
             </ChartNoDataMessage>
             <DataSetName>xEventSumDS</DataSetName>
             <Top>2.3466in</Top>
-            <Left>0in</Left>
             <Height>2.4375in</Height>
             <Width>4.75in</Width>
             <ZIndex>8</ZIndex>
@@ -2200,7 +2191,6 @@ order by duration_ms desc</CommandText>
             </TablixRowHierarchy>
             <DataSetName>PageSplitQueriesDS</DataSetName>
             <Top>7.29737in</Top>
-            <Left>0in</Left>
             <Height>0.5in</Height>
             <Width>7.29167in</Width>
             <ZIndex>9</ZIndex>
@@ -2450,7 +2440,6 @@ order by duration_ms desc</CommandText>
             </TablixRowHierarchy>
             <DataSetName>StatsUpdateQueriesDS</DataSetName>
             <Top>9.3807in</Top>
-            <Left>0in</Left>
             <Height>0.5in</Height>
             <Width>7.29167in</Width>
             <ZIndex>10</ZIndex>
@@ -2483,7 +2472,6 @@ order by duration_ms desc</CommandText>
             </Paragraphs>
             <rd:DefaultName>Textbox23</rd:DefaultName>
             <Top>10.0439in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
             <Width>3.47917in</Width>
             <ZIndex>11</ZIndex>
@@ -2735,7 +2723,6 @@ order by duration_ms desc</CommandText>
             </TablixRowHierarchy>
             <DataSetName>MissingJoinQueriesDS</DataSetName>
             <Top>10.2939in</Top>
-            <Left>0in</Left>
             <Height>0.5in</Height>
             <Width>7.29167in</Width>
             <ZIndex>12</ZIndex>
@@ -2768,7 +2755,6 @@ order by duration_ms desc</CommandText>
             </Paragraphs>
             <rd:DefaultName>Textbox23</rd:DefaultName>
             <Top>9.1307in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
             <Width>3.47917in</Width>
             <ZIndex>13</ZIndex>
@@ -2803,7 +2789,6 @@ order by duration_ms desc</CommandText>
             </Paragraphs>
             <rd:DefaultName>Textbox23</rd:DefaultName>
             <Top>7.04737in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
             <Width>3.47917in</Width>
             <ZIndex>14</ZIndex>
